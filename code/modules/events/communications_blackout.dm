@@ -7,12 +7,12 @@
 	announceWhen	= 1
 
 /datum/round_event/communications_blackout/announce(fake)
-	var/alert = pick(	"Ionospheric anomalies detected. Temporary telecommunication failure imminent. Please contact you*%fj00)`5vc-BZZT", \
-						"Ionospheric anomalies detected. Temporary telecommunication failu*3mga;b4;'1v¬-BZZZT", \
-						"Ionospheric anomalies detected. Temporary telec#MCi46:5.;@63-BZZZZT", \
-						"Ionospheric anomalies dete'fZ\\kg5_0-BZZZZZT", \
-						"Ionospheri:%£ MCayj^j<.3-BZZZZZZT", \
-						"#4nd%;f4y6,>£%-BZZZZZZZT")
+	var/alert = pick(	"Ионная аномалия обнаружена вблизи Телекоммуникационного оборудования. Пожалуйста обра*%f;%?:*-БЗЗТ", \
+						"Ионная аномалия обнаружена вблизи Телекоммуникационного оборуд*3mga;b4;'1v¬-БЗЗЗТ", \
+						"Ионная аномалия обнаружена вблизи Теле#MCi46:5.;@63-БЗЗЗЗТ", \
+						"Ионная аномалия обна'fZ\\kg5_0-БЗЗЗЗЗЗТ", \
+						"Ионная аном:%£ MCayj^j<.3-БЗЗЗЗЗЗТ", \
+						"#4nd%;f4y6,>£%-БЗЗЗЗЗЗЗТ")
 
 	for(var/mob/living/silicon/ai/A in GLOB.ai_list)	//AIs are always aware of communication blackouts.
 		to_chat(A, "<br><span class='warning'><b>[alert]</b></span><br>")

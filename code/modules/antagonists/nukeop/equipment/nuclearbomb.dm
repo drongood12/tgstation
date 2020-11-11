@@ -564,7 +564,7 @@
 	disarm()
 
 /obj/machinery/nuclearbomb/beer/proc/stationwide_foam()
-	priority_announce("The scrubbers network is experiencing a backpressure surge. Some ejection of contents may occur.", "Atmospherics alert")
+	priority_announce("Сеть скрубберов испытывает скачок обратного давления. Может произойти некоторый выброс содержимого.", "Атмосферное Предупреждение")
 
 	for (var/obj/machinery/atmospherics/components/unary/vent_scrubber/vent in GLOB.machines)
 		var/turf/vent_turf = get_turf(vent)

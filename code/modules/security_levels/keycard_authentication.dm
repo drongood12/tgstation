@@ -125,7 +125,7 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 		for(var/obj/machinery/door/airlock/D in A)
 			D.emergency = TRUE
 			D.update_icon(0)
-	minor_announce("Access restrictions on maintenance and external airlocks have been lifted.", "Attention! Station-wide emergency declared!",1)
+	minor_announce("Были сняты ограничения доступа на технические туннели и внешние шлюзы.", "Внимание! Объявлена чрезвычайная ситуация на всей станции!",1)
 	GLOB.emergency_access = TRUE
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("emergency maintenance access", "enabled"))
 
@@ -134,13 +134,13 @@ GLOBAL_VAR_INIT(emergency_access, FALSE)
 		for(var/obj/machinery/door/airlock/D in A)
 			D.emergency = FALSE
 			D.update_icon(0)
-	minor_announce("Access restrictions in maintenance areas have been restored.", "Attention! Station-wide emergency rescinded:")
+	minor_announce("Восстановлены ограничения доступа в технические зоны.", "Внимание! Чрезвычайная ситуация на всей станции отменена:")
 	GLOB.emergency_access = FALSE
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("emergency maintenance access", "disabled"))
 
 /proc/toggle_bluespace_artillery()
 	GLOB.bsa_unlock = !GLOB.bsa_unlock
-	minor_announce("Bluespace Artillery firing protocols have been [GLOB.bsa_unlock? "unlocked" : "locked"]", "Weapons Systems Update:")
+	minor_announce("Статус БСА: [GLOB.bsa_unlock? "unlocked" : "locked"]", "Обновление Систем Безопасности:")
 	SSblackbox.record_feedback("nested tally", "keycard_auths", 1, list("bluespace artillery", GLOB.bsa_unlock? "unlocked" : "locked"))
 
 #undef KEYCARD_RED_ALERT

@@ -28,7 +28,7 @@
 		source = initial(example.name)
 	else if(originMachine)
 		source = originMachine.name
-	priority_announce("Rampant brand intelligence has been detected aboard [station_name()]. Please stand by. The origin is believed to be \a [source].", "Machine Learning Alert")
+	priority_announce("На [station_name()] обнаружена информация о бракованой партии техники \a [source]. Рекомендуется проверка оборудования.", "Предупреждение о бракованной партии")
 
 /datum/round_event/brand_intelligence/start()
 	for(var/obj/machinery/vending/V in GLOB.machines)

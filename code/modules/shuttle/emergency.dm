@@ -340,7 +340,7 @@
 	else
 		SSshuttle.emergencyLastCallLoc = null
 
-	priority_announce("The emergency shuttle has been called. [redAlert ? "Red Alert state confirmed: Dispatching priority shuttle. " : "" ]It will arrive in [timeLeft(600)] minutes.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nCall signal traced. Results can be viewed on any communications console." : "" ][SSshuttle.adminEmergencyNoRecall ? "\n\nWarning: Shuttle recall subroutines disabled; Recall not possible." : ""]", null, 'sound/ai/shuttlecalled.ogg', "Priority")
+	priority_announce("Шаттл эвакуации был вызван. [redAlert ? "Красный код: отправка шатла в приоритете. " : "" ]Время прибытия шатла: [timeLeft(600)] минут.[reason][SSshuttle.emergencyLastCallLoc ? "\n\nСигнал вызова обнаружен. Результаты можно просмотреть на любой коммуникационной консоли." : "" ][SSshuttle.adminEmergencyNoRecall ? "\n\nВнимание: отозвать шаттл невозможен: отключены подпрограммы управления шаттлом." : ""]", null, 'sound/ai/shuttlecalled.ogg', "Приоритетно")
 
 /obj/docking_port/mobile/emergency/cancel(area/signalOrigin)
 	if(mode != SHUTTLE_CALL)
@@ -355,7 +355,7 @@
 		SSshuttle.emergencyLastCallLoc = signalOrigin
 	else
 		SSshuttle.emergencyLastCallLoc = null
-	priority_announce("The emergency shuttle has been recalled.[SSshuttle.emergencyLastCallLoc ? " Recall signal traced. Results can be viewed on any communications console." : "" ]", null, 'sound/ai/shuttlerecalled.ogg', "Priority")
+	priority_announce("Шаттл эвакуации был отозван. [SSshuttle.emergencyLastCallLoc ? " Сигнал отзыва обнаружен. Результаты можно просмотреть на любой коммуникационной консоли." : "" ]", null, 'sound/ai/shuttlerecalled.ogg', "Priority")
 
 	SSticker.emergency_reason = null
 
@@ -444,7 +444,7 @@
 				mode = SHUTTLE_DOCKED
 				setTimer(SSshuttle.emergencyDockTime)
 				send2adminchat("Server", "The Emergency Shuttle has docked with the station.")
-				priority_announce("[SSshuttle.emergency] has docked with the station. You have [timeLeft(600)] minutes to board the Emergency Shuttle.", null, 'sound/ai/shuttledock.ogg', "Priority")
+				priority_announce("[SSshuttle.emergency] состыкован со станцией. У вас [timeLeft(600)] минуты на посадку.", null, 'sound/ai/shuttledock.ogg', "Priority")
 				ShuttleDBStuff()
 
 
@@ -535,9 +535,9 @@
 				var/destination_dock = "emergency_away"
 				if(is_hijacked() || elimination_hijack())
 					destination_dock = "emergency_syndicate"
-					minor_announce("Corruption detected in \
-						shuttle navigation protocols. Please contact your \
-						supervisor.", "SYSTEM ERROR:", alert=TRUE)
+					minor_announce("Ошибка навигатора шатла. \
+						Пожалуйства свяжитесь с нами для дальнейших \
+						инструкций.", "СИСТЕМНАЯ ОШИБКА:", alert=TRUE)
 
 				dock_id(destination_dock)
 				mode = SHUTTLE_ENDGAME
@@ -550,7 +550,7 @@
 	mode = SHUTTLE_ESCAPE
 	launch_status = ENDGAME_LAUNCHED
 	setTimer(SSshuttle.emergencyEscapeTime)
-	priority_announce("The Emergency Shuttle is preparing for direct jump. Estimate [timeLeft(600)] minutes until the shuttle docks at Central Command.", null, null, "Priority")
+	priority_announce("Аварийный шаттл готовится к прямому прыжку. Ожидайте [timeLeft(600)] минут до прибытия к докам Центрального Коммандования", null, null, "Приоритетно")
 
 
 /obj/docking_port/mobile/pod

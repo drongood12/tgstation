@@ -175,7 +175,7 @@
 	var/list/trait_list = list(TRAIT_RESISTHEAT,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_NOFIRE)
 
 /datum/eldritch_knowledge/final/ash_final/on_finished_recipe(mob/living/user, list/atoms, loc)
-	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the blaze, for Ashlord [user.real_name] has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
+	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Бойтесь огня ибо Лорд [user.real_name] идёт! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/aoe_turf/fire_cascade/big)
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/fire_sworn)
 	var/mob/living/carbon/human/H = user

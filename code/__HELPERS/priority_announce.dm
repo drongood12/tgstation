@@ -5,16 +5,16 @@
 	var/announcement
 
 	if(type == "Priority")
-		announcement += "<h1 class='alert'>Priority Announcement</h1>"
+		announcement += "<h1 class='alert'>Приоритетное Объявление</h1>"
 		if (title && length(title) > 0)
 			announcement += "<br><h2 class='alert'>[html_encode(title)]</h2>"
 	else if(type == "Captain")
-		announcement += "<h1 class='alert'>Captain Announces</h1>"
-		GLOB.news_network.SubmitArticle(text, "Captain's Announcement", "Station Announcements", null)
+		announcement += "<h1 class='alert'>Капитанское Объявление</h1>"
+		GLOB.news_network.SubmitArticle(text, "Капитанское Объявление", "Анонс Станции", null)
 
 	else
 		if(!sender_override)
-			announcement += "<h1 class='alert'>[command_name()] Update</h1>"
+			announcement += "<h1 class='alert'>[command_name()]:Обьявление</h1>" //Не трогаю ибо могу сломать
 		else
 			announcement += "<h1 class='alert'>[sender_override]</h1>"
 		if (title && length(title) > 0)
@@ -22,9 +22,9 @@
 
 		if(!sender_override)
 			if(title == "")
-				GLOB.news_network.SubmitArticle(text, "Central Command Update", "Station Announcements", null)
+				GLOB.news_network.SubmitArticle(text, "Новости Центрального Коммандования", "Анонс Станции", null)
 			else
-				GLOB.news_network.SubmitArticle(title + "<br><br>" + text, "Central Command", "Station Announcements", null)
+				GLOB.news_network.SubmitArticle(title + "<br><br>" + text, "Центральное Коммандование", "Анонс Станции", null)
 
 	announcement += "<br><span class='alert'>[html_encode(text)]</span><br>"
 	announcement += "<br>"
@@ -38,10 +38,10 @@
 
 /proc/print_command_report(text = "", title = null, announce=TRUE)
 	if(!title)
-		title = "Classified [command_name()] Update"
+		title = "Секретные Новости [command_name()]"
 
 	if(announce)
-		priority_announce("A report has been downloaded and printed out at all communications consoles.", "Incoming Classified Message", 'sound/ai/commandreport.ogg')
+		priority_announce("Отчет был загружен и распечатан на всех коммуникационных консолях.", "Входящее Зашифрованное Сообщение", 'sound/ai/commandreport.ogg')
 
 	var/datum/comm_message/M  = new
 	M.title = title
@@ -49,7 +49,7 @@
 
 	SScommunications.send_message(M)
 
-/proc/minor_announce(message, title = "Attention:", alert, html_encode = TRUE)
+/proc/minor_announce(message, title = "Внимание:", alert, html_encode = TRUE)
 	if(!message)
 		return
 

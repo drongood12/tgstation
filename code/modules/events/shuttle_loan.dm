@@ -30,31 +30,31 @@
 	SSshuttle.shuttle_loan = src
 	switch(dispatch_type)
 		if(HIJACK_SYNDIE)
-			priority_announce("Cargo: The syndicate are trying to infiltrate your station. If you let them hijack your cargo shuttle, you'll save us a headache.","CentCom Counterintelligence")
+			priority_announce("Карго: Синдикат пытается проникнуть на вашу станцию. Если вы позволите им захватить ваш грузовой шаттл, вы избавите нас от головной боли.","Контрразведка Центрального Коммандования")
 		if(RUSKY_PARTY)
-			priority_announce("Cargo: A group of angry Russians want to have a party. Can you send them your cargo shuttle then make them disappear?","CentCom Russian Outreach Program")
+			priority_announce("Карго: Группа разгневанных русских хочет устроить вечеринку. Можете ли вы отправить им свой грузовой шаттл, а затем заставить их исчезнуть?","Горячая Линия Центрального Коммандования")
 		if(SPIDER_GIFT)
-			priority_announce("Cargo: The Spider Clan has sent us a mysterious gift. Can we ship it to you to see what's inside?","CentCom Diplomatic Corps")
+			priority_announce("Карго: Клан Пауков прислал нам таинственный подарок. Можем ли мы отправить его вам, чтобы посмотреть, что внутри?","Дипломатический Корпус Центрального Коммандования")
 		if(DEPARTMENT_RESUPPLY)
-			priority_announce("Cargo: Seems we've ordered doubles of our department resupply packages this month. Can we send them to you?","CentCom Supply Department")
-			thanks_msg = "The cargo shuttle should return in five minutes."
+			priority_announce("Карго: Похоже, в этом месяце мы заказали два ящика вместо одного нашего отдела пополнения запасов. Мы можем послать их вам?","Отдел Снабжения Центрального Коммандования")
+			thanks_msg = "Грузовой шаттл должен вернуться через пять минут."
 			bonus_points = 0
 		if(ANTIDOTE_NEEDED)
-			priority_announce("Cargo: Your station has been chosen for an epidemiological research project. Send us your cargo shuttle to receive your research samples.", "CentCom Research Initiatives")
+			priority_announce("Карго: Ваша станция была выбрана для эпидемиологического исследовательского проекта. Отправьте нам свой грузовой шаттл, чтобы получить ваши исследовательские образцы.", "Отдел Научных Инициатив Центрального Коммандования")
 		if(PIZZA_DELIVERY)
-			priority_announce("Cargo: It looks like a neighbouring station accidentally delivered their pizza to you instead.", "CentCom Spacepizza Division")
-			thanks_msg = "The cargo shuttle should return in five minutes."
+			priority_announce("Карго: Похоже, что соседняя станция случайно доставила вам свою пиццу вместо этого.", "Отдел Доставки Пиццы Центрального Коммандования")
+			thanks_msg = "Грузовой шаттл должен вернуться через пять минут.."
 			bonus_points = 0
 		if(ITS_HIP_TO)
-			priority_announce("Cargo: One of our freighters carrying a bee shipment has been attacked by eco-terrorists. Can you clean up the mess for us?", "CentCom Janitorial Division")
+			priority_announce("Карго: Один из наших грузовых шаттлов, перевозящих партию пчел, подвергся нападению экотеррористов. Не могли бы вы навести здесь порядок?", "Отдел Уборщиков Центрального Коммандования")
 			bonus_points = 20000 //Toxin bees can be unbeelievably lethal
 		if(MY_GOD_JC)
-			priority_announce("Cargo: We have discovered an active Syndicate bomb near our VIP shuttle's fuel lines. If you feel up to the task, we will pay you for defusing it.", "CentCom Security Division")
-			thanks_msg = "Live explosive ordnance incoming via supply shuttle. Evacuating cargo bay is recommended."
+			priority_announce("Карго: Мы обнаружили действующую бомбу синдиката рядом с топливопроводами нашего VIP-шаттла. Если вы чувствуете, что справитесь с задачей, мы заплатим вам за ее обезвреживание.", "Охранный Департамент Центрального Коммандования")
+			thanks_msg = "Взывоопасные обьекты будут на шаттле снабжения. Рекомендуется эвакуировать карго."
 			bonus_points = 45000 //If you mess up, people die and the shuttle gets turned into swiss cheese
 
 /datum/round_event/shuttle_loan/proc/loan_shuttle()
-	priority_announce(thanks_msg, "Cargo shuttle commandeered by CentCom.")
+	priority_announce(thanks_msg, "Грузовой шаттл, захваченный Центральным Коммандованием.")
 
 	dispatched = TRUE
 	var/datum/bank_account/D = SSeconomy.get_dep_account(ACCOUNT_CAR)

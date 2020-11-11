@@ -29,7 +29,7 @@
 
 /obj/singularity/narsie/large/Initialize()
 	. = ..()
-	send_to_playing_players("<span class='narsie'>NAR'SIE HAS RISEN</span>")
+	send_to_playing_players("<span class='narsie'>НАР'СИ БЫЛ ВЫЗВАН</span>")
 	sound_to_playing_players('sound/creatures/narsie_rises.ogg')
 
 	var/area/A = get_area(src)
@@ -72,27 +72,27 @@
 /proc/begin_the_end()
 	sleep(50)
 	if(QDELETED(GLOB.cult_narsie)) // uno
-		priority_announce("Status report? We detected an anomaly, but it disappeared almost immediately.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
+		priority_announce("Отчет о состоянии дел? Мы обнаружили аномалию, но она почти сразу исчезла.","Исследовательский Отдел Центрального Коммандования", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(20)
 		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
 		return
-	priority_announce("An acausal dimensional event has been detected in your sector. Event has been flagged EXTINCTION-CLASS. Directing all available assets toward simulating solutions. SOLUTION ETA: 60 SECONDS.","Central Command Higher Dimensional Affairs", 'sound/misc/airraid.ogg')
+	priority_announce("В вашем секторе обнаружено акаузальное пространственное событие. Событие помечено как класс конца света XK. Направление всех доступных ресурсов на моделирование решений. РЕШЕНИЕ БУДЕТ ЧЕРЕЗ: 60 СЕКУНД.","Исследовательский Отдел Центрального Коммандования", 'sound/misc/airraid.ogg')
 	sleep(500)
 	if(QDELETED(GLOB.cult_narsie)) // dos
-		priority_announce("Simulations aborted, sensors report that the acasual event is normalizing. Good work, crew.","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
+		priority_announce("Моделирование прервано, датчики сообщают, что случайное событие нормализуется. Хорошая работа, команда.","Исследовательский Отдел Центрального Коммандования", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(20)
 		INVOKE_ASYNC(GLOBAL_PROC, .proc/cult_ending_helper, 2)
 		return
-	priority_announce("Simulations on acausal dimensional event complete. Deploying solution package now. Deployment ETA: ONE MINUTE. ","Central Command Higher Dimensional Affairs")
+	priority_announce("Завершено моделирование акаузального пространственного события. Дешифровка файла решения сейчас. ВРЕМЯ ДЕШИФРОВКИ: ОДНА МИНУТА.","Исследовательский Отдел Центрального Коммандования")
 	sleep(50)
 	set_security_level("delta")
 	SSshuttle.registerHostileEnvironment(GLOB.cult_narsie)
 	SSshuttle.lockdown = TRUE
 	sleep(600)
 	if(QDELETED(GLOB.cult_narsie)) // tres
-		priority_announce("Normalization detected! Abort the solution package!","Central Command Higher Dimensional Affairs", 'sound/misc/notice1.ogg')
+		priority_announce("Обнаружена нормализация пространства! Файл решения удалён!","Исследовательский Отдел Центрального Коммандования", 'sound/misc/notice1.ogg')
 		GLOB.cult_narsie = null
 		sleep(20)
 		set_security_level("red")
@@ -106,7 +106,7 @@
 		addtimer(CALLBACK(GLOBAL_PROC, .proc/cult_ending_helper), 120)
 
 /obj/singularity/narsie/large/cult/Destroy()
-	send_to_playing_players("<span class='narsie'>\"<b>[pick("Nooooo...", "Not die. How-", "Die. Mort-", "Sas tyen re-")]\"</b></span>")
+	send_to_playing_players("<span class='narsie'>\"<b>[pick("Неееет...", "Я не умру, я не-", "Умри жал-", "Сас туен ре-")]\"</b></span>")
 	sound_to_playing_players('sound/magic/demon_dies.ogg', 50)
 	var/list/all_cults = list()
 	for(var/datum/antagonist/cult/C in GLOB.antagonists)
@@ -204,12 +204,12 @@
 /obj/singularity/narsie/proc/acquire(atom/food)
 	if(food == target)
 		return
-	to_chat(target, "<span class='cultsmall'>NAR'SIE HAS LOST INTEREST IN YOU.</span>")
+	to_chat(target, "<span class='cultsmall'>НАР'СИ ПОТЕРЯЛ ИНТЕРЕС К ТЕБЕ.</span>")
 	target = food
 	if(ishuman(target))
-		to_chat(target, "<span class='cult'>NAR'SIE HUNGERS FOR YOUR SOUL.</span>")
+		to_chat(target, "<span class='cult'>НАР'СИ ХОЧЕТ БОЛЬШЕ ДУШ.</span>")
 	else
-		to_chat(target, "<span class='cult'>NAR'SIE HAS CHOSEN YOU TO LEAD HER TO HER NEXT MEAL.</span>")
+		to_chat(target, "<span class='cult'>НАР'СИ ВЫБРАЛ ТЕБЯ В КАЧЕСТВЕ ВОЖДЯ ЖАТВЫ.</span>")
 
 //Wizard narsie
 /obj/singularity/narsie/wizard

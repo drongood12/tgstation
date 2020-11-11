@@ -222,7 +222,7 @@
 
 /datum/eldritch_knowledge/final/flesh_final/on_finished_recipe(mob/living/user, list/atoms, loc)
 	. = ..()
-	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Ever coiling vortex, Reality unfoiled. KING OF ARMS [user.real_name] has come! Fear the ever twisting hand! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
+	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Вечно крутящийся вихрь, реальность разрушена. КОРОЛЬ ОРУЖИЯ [user.real_name] идёт! Бойтесь вечно преследующей руки! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
 	user.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/shed_human_form)
 	if(!ishuman(user))
 		return

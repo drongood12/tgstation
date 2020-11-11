@@ -134,7 +134,7 @@
 	H.physiology.brute_mod *= 0.5
 	H.physiology.burn_mod *= 0.5
 	H.client?.give_award(/datum/award/achievement/misc/rust_ascension, H)
-	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Fear the decay, for Rustbringer [user.real_name] has come! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
+	priority_announce("$^@&#*$^@(#&$(@&#^$&#^@# Бойся разложения, ибо Повелитель Разложения [user.real_name] грядёт! $^@&#*$^@(#&$(@&#^$&#^@#","#$^@&#*$^@(#&$(@&#^$&#^@#", 'sound/ai/spanomalies.ogg')
 	new /datum/rust_spread(loc)
 	return ..()
 

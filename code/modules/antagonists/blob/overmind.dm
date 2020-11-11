@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 			qdel(src)
 	else if(!victory_in_progress && (blobs_legit.len >= blobwincount))
 		victory_in_progress = TRUE
-		priority_announce("Biohazard has reached critical mass. Station loss is imminent.", "Biohazard Alert")
+		priority_announce("Биологическая опасность достигла критической массы. Потеря станции неминуема.", "Biohazard Alert")
 		set_security_level("delta")
 		max_blob_points = INFINITY
 		blob_points = INFINITY
@@ -123,7 +123,7 @@ GLOBAL_LIST_EMPTY(blob_nodes)
 		max_count = blobs_legit.len
 
 	if((world.time >= announcement_time || blobs_legit.len >= announcement_size) && !has_announced)
-		priority_announce("Confirmed outbreak of level 5 biohazard aboard [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", 'sound/ai/outbreak5.ogg')
+		priority_announce("5 уровень биологической угрозы обнаружен на [station_name()]. Весь персонал должен сдерживать опасность.", "Оповещение о биологической опасности", 'sound/ai/outbreak5.ogg')
 		has_announced = TRUE
 
 /mob/camera/blob/proc/victory()

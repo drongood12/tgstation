@@ -152,7 +152,7 @@
 			set_station_name(new_name)
 			log_admin("[key_name(usr)] renamed the station to \"[new_name]\".")
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] renamed the station to: [new_name].</span>")
-			priority_announce("[command_name()] has renamed the station to \"[new_name]\".")
+			priority_announce("Ваша станция теперь называется \"[new_name]\".")
 		if("night_shift_set")
 			if(!check_rights(R_ADMIN))
 				return
@@ -178,7 +178,7 @@
 			set_station_name(new_name)
 			log_admin("[key_name(usr)] reset the station name.")
 			message_admins("<span class='adminnotice'>[key_name_admin(usr)] reset the station name.</span>")
-			priority_announce("[command_name()] has renamed the station to \"[new_name]\".")
+			priority_announce("Ваша станция теперь называется \"[new_name]\".")
 
 		if("list_bombers")
 			if(!check_rights(R_ADMIN))
@@ -478,7 +478,7 @@
 				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
 					W.req_access = list()
 			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-			priority_announce("CentCom airlock control override activated. Please take this time to get acquainted with your coworkers.", null, 'sound/ai/commandreport.ogg')
+			priority_announce("Активировано блокирование управления воздушным шлюзом Центрального Коммандования. Пожалуйста, найдите время, чтобы познакомиться со своими коллегами.", null, 'sound/ai/commandreport.ogg')
 
 		if("ancap")
 			if(!check_rights(R_FUN))
@@ -487,9 +487,9 @@
 			SSeconomy.full_ancap = !SSeconomy.full_ancap
 			message_admins("[key_name_admin(usr)] toggled Anarcho-capitalist mode")
 			if(SSeconomy.full_ancap)
-				priority_announce("The NAP is now in full effect.", null, 'sound/ai/commandreport.ogg')
+				priority_announce("В настоящее время АНКАП действует в полную силу.", null, 'sound/ai/commandreport.ogg')
 			else
-				priority_announce("The NAP has been revoked.", null, 'sound/ai/commandreport.ogg')
+				priority_announce("В настоящее время АНКАП был отменен.", null, 'sound/ai/commandreport.ogg')
 
 
 

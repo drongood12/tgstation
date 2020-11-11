@@ -104,7 +104,7 @@
 			charge = 0
 			corrupt()
 			update_icon()
-			
+
 	return drain_total
 
 //RDCONSOLE//
@@ -166,11 +166,11 @@
 		var/announcement_pick = rand(0, 2)
 		switch(announcement_pick)
 			if(0)
-				priority_announce("Attention crew, it appears that someone on your station has made unexpected communication with an alien device in nearby space.", "[command_name()] High-Priority Update")
+				priority_announce("Внимательная команда, похоже, кто-то на вашей станции неожиданно установил связь с инопланетным устройством в соседнем секторе.", "[command_name()] Высокого Приоритета")
 				var/datum/round_event_control/spawn_swarmer/swarmer_event = new/datum/round_event_control/spawn_swarmer
 				swarmer_event.runEvent()
 			if(1)
-				priority_announce("Attention crew, it appears that someone on your station has made unexpected communication with a syndicate ship in nearby space.", "[command_name()] High-Priority Update")
+				priority_announce("Внимательная команда, похоже, кто-то на вашей станции неожиданно установил связь с кораблем Синдиката в соседнем секторе.", "[command_name()] Высокого Приоритета")
 				var/datum/round_event_control/pirates/pirate_event = new/datum/round_event_control/pirates
 				pirate_event.runEvent()
 		ninja_gloves.communication_console_hack_success = TRUE
@@ -231,7 +231,7 @@
 		else
 			drain_total += drained
 		ninja_suit.spark_system.start()
-	
+
 	return drain_total
 
 //MECH//
@@ -280,7 +280,7 @@
 		ionpulse = TRUE
 		laws = new /datum/ai_laws/ninja_override()
 		module.transform_to(pick(/obj/item/robot_module/syndicate, /obj/item/robot_module/syndicate_medical, /obj/item/robot_module/saboteur))
-			
+
 		var/datum/antagonist/ninja/ninja_antag = ninja.mind.has_antag_datum(/datum/antagonist/ninja)
 		if(!ninja_antag)
 			return

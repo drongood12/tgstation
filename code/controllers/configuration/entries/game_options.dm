@@ -174,22 +174,22 @@
 /datum/config_entry/flag/arrivals_shuttle_require_safe_latejoin	//Require the arrivals shuttle to be operational in order for latejoiners to join
 
 /datum/config_entry/string/alert_green
-	config_entry_value = "All threats to the station have passed. Security may not have weapons visible, privacy laws are once again fully enforced."
+	config_entry_value = "Все угрозы станции миновали. Сотрудники Службы безопасности не могут носить оружие на виду а так-же проникать в другие отсеки."
 
 /datum/config_entry/string/alert_blue_upto
-	config_entry_value = "The station has received reliable information about possible hostile activity on the station. Security staff may have weapons visible, random searches are permitted."
+	config_entry_value = "Станция получила достоверную информацию о возможной враждебной деятельности на станции. Сотрудники Службы безопасности могут носить на виду оружие, случайные обыски разрешены."
 
 /datum/config_entry/string/alert_blue_downto
-	config_entry_value = "The immediate threat has passed. Security may no longer have weapons drawn at all times, but may continue to have them visible. Random searches are still allowed."
+	config_entry_value = "Непосредственная угроза миновала. Сотрудники Службы безопасности не советуется держать оружие наготове, но может продолжать держать его на виду. Случайные обыски по-прежнему разрешены."
 
 /datum/config_entry/string/alert_red_upto
-	config_entry_value = "There is an immediate serious threat to the station. Security may have weapons unholstered at all times. Random searches are allowed and advised."
+	config_entry_value = "Существует непосредственная серьезная угроза для станции. Сотрудники Службы безопасности должны держать оружие наготове. Случайные обыски разрешены и рекомендуются."
 
 /datum/config_entry/string/alert_red_downto
-	config_entry_value = "The station's destruction has been averted. There is still however an immediate serious threat to the station. Security may have weapons unholstered at all times, random searches are allowed and advised."
+	config_entry_value = "Уничтожение станции удалось предотвратить. Однако по-прежнему существует непосредственная серьезная угроза для станции. Сотрудники Службы безопасности должны держать оружие наготове. Случайные обыски разрешены и рекомендуются."
 
 /datum/config_entry/string/alert_delta
-	config_entry_value = "Destruction of the station is imminent. All crew are instructed to obey all instructions given by heads of staff. Any violations of these orders can be punished by death. This is not a drill."
+	config_entry_value = "Уничтожение станции неминуемо. Всем членам экипажа должны выполнять все указания, данные главами отделов. Любое нарушение этих приказов карается смертью."
 
 /datum/config_entry/flag/revival_pod_plants
 

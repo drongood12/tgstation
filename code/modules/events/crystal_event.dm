@@ -158,12 +158,12 @@ This section is for the event controller
 
 ///After 8 seconds from the initial explosions centcom will announce the location of the huge portals
 /datum/round_event/crystal_invasion/proc/announce_locations()
-	priority_announce("WARNING - After tracking the powerspikes from your station we have determined that huge portals have appeared at the following locations:[center_areas.Join(", ")]. \
-						Please close those before attempting to stabilize the crystal.", "Alert")
+	priority_announce("ВНИМАНИЕ - Мы определили, что огромные порталы появились в следующих местах:[center_areas.Join(", ")]. \
+						Пожалуйста, закройте их, прежде чем пытаться стабилизировать кристалл.", "Внимание")//после запятой , "Alert" если не работает заменить и починить
 	sound_to_playing_players('sound/misc/notice1.ogg')
 
 /datum/round_event/crystal_invasion/announce(fake)
-	priority_announce("WARNING - Destabilization of the Supermatter Crystal Matrix detected, please stand by and await further instructions.", "Alert")
+	priority_announce("Внимание - Обнаружена дестабилизация кристаллической матрицы суперматерии, ждите дальнейших инструкций.", "Внимание")
 	sound_to_playing_players('sound/misc/notice1.ogg')
 
 ///Choose the type of the wave
@@ -187,9 +187,9 @@ This section is for the event controller
 			kill()
 			CRASH("Wave name of [wave_name] not recognised.")
 
-	priority_announce("WARNING - Numerous energy fluctuations have been detected from your Supermatter; we estimate a [wave_name] of crystalline creatures \
-						coming from \[REDACTED]; there will be [portal_numbers] main portals spread around the station that you must close. Harvest a \[REDACTED] \
-						crystal from a portal by using the anomaly neutralizer, place it inside a crystal stabilizer, and inject it into your Supermatter to stop a ZK-Lambda-Class Cosmic Fragmentation Scenario from occurring.", "Alert")
+	priority_announce("ВНИМАНИЕ - В вашей суперматерии были обнаружены многочисленные колебания энергии; мы оцениваем что будет [wave_name] \
+						так как \[REDACTED]; всего будет [portal_numbers] порлатов которые необходимо закрыть. Необходимо \[REDACTED] \
+						кристалл из портала с помощью нейтрализатора аномалий, затем поместите его в стабилизатор кристалла и введите в свою суперматерию для остановки события класса ZK Разрушение Реальности", "Внимание")
 	sound_to_playing_players('sound/misc/notice1.ogg')
 
 ///Spawn one portal in a random location choosen from the generic_event_spawns list
@@ -203,7 +203,7 @@ This section is for the event controller
 ///If after 10 minutes the crystal is not stabilized more portals are spawned and the event progress further
 /datum/round_event/crystal_invasion/proc/more_portals()
 	priority_announce("WARNING - Detected another spike from the destabilized crystal. More portals are spawning all around the station, the next spike could \
-						cause a \[REDACTED] class event we assume you have five more minutes before total crystal annihilation", "Alert")
+						cause a \[REDACTED] class event we assume you have five more minutes before total crystal annihilation", "Alert")//напомните потом перевести весь этот текст
 	sound_to_playing_players('sound/misc/notice1.ogg')
 	var/list/spawners = list()
 	for(var/es in GLOB.generic_event_spawns)

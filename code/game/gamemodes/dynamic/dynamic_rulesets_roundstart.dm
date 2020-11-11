@@ -440,8 +440,8 @@
 			if(M.has_antag_datum(/datum/antagonist/rev))
 				var/datum/antagonist/rev/R = M.has_antag_datum(/datum/antagonist/rev)
 				R.remove_revolutionary(FALSE, "gamemode")
-		priority_announce("It appears the mutiny has been quelled. Please return yourself and your incapacitated colleagues to work. \
-			We have remotely blacklisted the head revolutionaries in your medical records to prevent accidental revival.", null, 'sound/ai/attention.ogg', null, "Central Command Loyalty Monitoring Division")
+		priority_announce("Похоже, мятеж был подавлен. Пожалуйста, вернитесь к работе. \
+			Мы дистанционно внесли изменения в их медицинские карты, чтобы предотвратить случайное клонирование.", null, 'sound/ai/attention.ogg', null, "Отдел Контроля Лояльности Центрального Командования")
 		return RULESET_STOP_PROCESSING
 
 /// Checks for revhead loss conditions and other antag datums.

@@ -11,7 +11,7 @@
 	announceWhen = 10
 
 /datum/round_event/ghost_role/space_dragon/announce(fake)
-	priority_announce("A large organic energy flux has been recorded near [station_name()], please stand by.", "Lifesign Alert")
+	priority_announce("Всплеск органической энергии обнаружен на [station_name()].", "Неопознаная Жизнь")
 
 /datum/round_event/ghost_role/space_dragon/spawn_role()
 	var/list/spawn_locs = list()

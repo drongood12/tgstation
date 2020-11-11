@@ -6,7 +6,7 @@
 	min_players = 20
 
 /datum/round_event/spawn_swarmer/announce(fake)
-	priority_announce("Our long-range sensors have detected that your station's defenses have been breached by some sort of alien device.  We suggest searching for and destroying it as soon as possible.", "[command_name()] High-Priority Update")
+	priority_announce("Наши дальнобойные сенсоры обнаружили, что на вашей станции находятся инопланетные паразиты.  Мы предлагаем найти и уничтожить его как можно скорее.", "[command_name()] Высокого Приоритета")
 
 /datum/round_event/spawn_swarmer
 	announceWhen = 70
