@@ -30,7 +30,7 @@
 
 /datum/round_event/grey_tide/announce(fake)
 	if(areasToOpen && areasToOpen.len > 0)
-		priority_announce("Зловред ГР3ЙТ41Д проник в шлюзы [station_name()]. Уровень угрозы:[severity]. Рекомендуется вмешательство ИИ.", "Предупреждение системы безопасности")
+		priority_announce("Зловред ГР3ЙТ41Д проник в шлюзы [station_name()]. Уровень угрозы: [severity]. Рекомендуется вмешательство ИИ.", "Предупреждение системы безопасности")
 	else
 		log_world("ERROR: Could not initiate grey-tide. No areas in the list!")
 		kill()
@@ -56,4 +56,3 @@
 			else if(istype(O, /obj/machinery/door_timer))
 				var/obj/machinery/door_timer/temp = O
 				temp.timer_end(forced = TRUE)
-
