@@ -33,11 +33,11 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 						FA.update_icon()
 			if(SEC_LEVEL_BLUE)
 				if(GLOB.security_level < SEC_LEVEL_BLUE)
-					minor_announce(CONFIG_GET(string/alert_blue_upto), "Внимание! Код синий:",1)
+					minor_announce(CONFIG_GET(string/alert_blue_upto), "Внимание! Уровень безопасности повышен до синего:",1)
 					if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 						SSshuttle.emergency.modTimer(0.5)
 				else
-					minor_announce(CONFIG_GET(string/alert_blue_downto), "Внимание! Код синий:")
+					minor_announce(CONFIG_GET(string/alert_blue_downto), "Внимание! Уровень безопасности понижен до синего:")
 					if(SSshuttle.emergency.mode == SHUTTLE_CALL || SSshuttle.emergency.mode == SHUTTLE_RECALL)
 						SSshuttle.emergency.modTimer(2)
 				GLOB.security_level = SEC_LEVEL_BLUE

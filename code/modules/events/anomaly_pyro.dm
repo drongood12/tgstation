@@ -11,4 +11,4 @@
 	anomaly_path = /obj/effect/anomaly/pyro
 
 /datum/round_event/anomaly/anomaly_pyro/announce(fake)
-	priority_announce("Сжатое облако огнеопасного газа было обнаружено СДД. Ожидаемое место появления: [impact_area.name].", "Anomaly Alert")
+	priority_announce("Сжатое облако огнеопасного газа было обнаружено Сканером Дальнего Действия. Ожидаемое место появления: [impact_area.name].", "Anomaly Alert")

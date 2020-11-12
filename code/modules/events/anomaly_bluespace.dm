@@ -11,4 +11,4 @@
 	anomaly_path = /obj/effect/anomaly/bluespace
 
 /datum/round_event/anomaly/anomaly_bluespace/announce(fake)
-	priority_announce("Нестабильная блюспейс аномалия была обнаружена СДД. Ожидаемое место появления: [impact_area.name].", "Anomaly Alert")
+	priority_announce("Нестабильная блюспейс аномалия была обнаружена Сканером Дальнего Действия. Ожидаемое место появления: [impact_area.name].", "Anomaly Alert")

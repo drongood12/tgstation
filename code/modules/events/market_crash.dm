@@ -17,8 +17,8 @@
 	announceWhen = 2
 
 /datum/round_event/market_crash/announce(fake)
-	var/list/poss_reasons = list("попыток стабилизировать цены",\
-		"проблемм на рынке",\
+	var/list/poss_reasons = list("волнений на бирже",\
+		"проблем на рынке",\
 		"ошибок B.E.P.I.S.",\
 		"Terragov и её валюты",\
 		"сильно преувеличенных сообщениях о массовых самоубийствах сотрудников бухгалтерии Нанотразен")

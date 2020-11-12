@@ -166,11 +166,11 @@
 		var/announcement_pick = rand(0, 2)
 		switch(announcement_pick)
 			if(0)
-				priority_announce("Внимательная команда, похоже, кто-то на вашей станции неожиданно установил связь с инопланетным устройством в соседнем секторе.", "[command_name()] Высокого Приоритета")
+priority_announce("Внимание экипаж, похоже, кто-то на вашей станции неожиданно установил связь с инопланетным устройством в соседнем секторе.", "[command_name()] сообщает")//Сюда не вписать более высокий приоритет никак
 				var/datum/round_event_control/spawn_swarmer/swarmer_event = new/datum/round_event_control/spawn_swarmer
 				swarmer_event.runEvent()
 			if(1)
-				priority_announce("Внимательная команда, похоже, кто-то на вашей станции неожиданно установил связь с кораблем Синдиката в соседнем секторе.", "[command_name()] Высокого Приоритета")
+priority_announce("Внимание экипаж, похоже, кто-то на вашей станции неожиданно установил связь с кораблем Синдиката в соседнем секторе.", "[command_name()] сообщает")//Сюда не вписать более высокий приоритет никак
 				var/datum/round_event_control/pirates/pirate_event = new/datum/round_event_control/pirates
 				pirate_event.runEvent()
 		ninja_gloves.communication_console_hack_success = TRUE

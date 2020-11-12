@@ -54,7 +54,7 @@
 
 /proc/power_restore_quick()
 
-	priority_announce("Все СМЕСы на [station_name()] были перезаряжены.", "Восстановление Сети Электропитания", 'sound/ai/poweron.ogg')
+	priority_announce("Все SMESs на [station_name()] были перезаряжены.", "Восстановление Сети Электропитания", 'sound/ai/poweron.ogg')
 	for(var/obj/machinery/power/smes/S in GLOB.machines)
 		if(!is_station_level(S.z))
 			continue

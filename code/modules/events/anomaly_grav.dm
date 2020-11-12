@@ -23,4 +23,4 @@
 	anomaly_path = /obj/effect/anomaly/grav/high
 
 /datum/round_event/anomaly/anomaly_grav/announce(fake)
-	priority_announce("Гравитационная аномалия была обнаружена СДД. Ожидаемое место появления: [impact_area.name].", "Anomaly Alert")
+	priority_announce("Гравитационная аномалия была обнаружена Сканером Дальнего Действия. Ожидаемое место появления: [impact_area.name].", "Anomaly Alert")

@@ -441,7 +441,7 @@
 				var/datum/antagonist/rev/R = M.has_antag_datum(/datum/antagonist/rev)
 				R.remove_revolutionary(FALSE, "gamemode")
 		priority_announce("Похоже, мятеж был подавлен. Пожалуйста, вернитесь к работе. \
-			Мы дистанционно внесли изменения в их медицинские карты, чтобы предотвратить случайное клонирование.", null, 'sound/ai/attention.ogg', null, "Отдел Контроля Лояльности Центрального Командования")
+			Мы дистанционно внесли изменения в медицинские карты главных революционеров, чтобы предотвратить их случайное клонирование.", null, 'sound/ai/attention.ogg', null, "Отдел Контроля Лояльности Центрального Командования")
 		return RULESET_STOP_PROCESSING
 
 /// Checks for revhead loss conditions and other antag datums.
