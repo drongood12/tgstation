@@ -50,7 +50,7 @@
 			bonus_points = 20000 //Toxin bees can be unbeelievably lethal
 		if(MY_GOD_JC)
 			priority_announce("Карго: Мы обнаружили взрывоопасную бомбу около нашего эксклюзивного шаттла. Если вы чувствуете, что справитесь с задачей, мы заплатим вам за ее обезвреживание.", "Отдел безопасности Центрального Коммандования")
-			thanks_msg = "Взывоопасные обьекты будут на шаттле снабжения. Рекомендуется эвакуировать карго."
+			thanks_msg = "Бомба отправлена вам вместе с шаттлом снабжения. Рекомендуется эвакуировать карго."
 			bonus_points = 45000 //If you mess up, people die and the shuttle gets turned into swiss cheese
 
 /datum/round_event/shuttle_loan/proc/loan_shuttle()
