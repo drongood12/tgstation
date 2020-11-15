@@ -299,7 +299,7 @@
 			G.on_report()
 			intercepttext += G.get_report()
 
-	print_command_report(intercepttext, "Сводка Центрального Коммандования", announce=FALSE)
+	print_command_report(intercepttext, "Сводка Центрального Командования", announce=FALSE)
 	priority_announce("Сводка скопирована и распечатана на всех консолях связи.", "Связь противника перехвачена. Код повышен.", 'sound/ai/intercept.ogg')
 	if(GLOB.security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)

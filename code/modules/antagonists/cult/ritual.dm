@@ -113,7 +113,7 @@ This file contains the cult dagger and rune list code
 		if(!(A in summon_objective.summon_spots))  // Check again to make sure they didn't move
 			to_chat(user, "<span class='cultlarge'>The Geometer can only be summoned where the veil is weak - in [english_list(summon_objective.summon_spots)]!</span>")
 			return
-		priority_announce("Вымыслы от сверхъестественного Бога исходят от [user] в [initial(A.name)] из неизвестного измерения. Нарушить ритуал любой ценой!","	Отдел По Изучению Измерений Центрального Коммандования", 'sound/ai/spanomalies.ogg')
+		priority_announce("Вымыслы от сверхъестественного Бога исходят от [user] в [initial(A.name)] из неизвестного измерения. Нарушить ритуал любой ценой!","	Отдел По Изучению Измерений Центрального Командования", 'sound/ai/spanomalies.ogg')
 		for(var/B in spiral_range_turfs(1, user, 1))
 			var/obj/structure/emergency_shield/cult/narsie/N = new(B)
 			shields += N

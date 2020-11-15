@@ -478,7 +478,7 @@
 				if(is_station_level(W.z) && !istype(get_area(W), /area/bridge) && !istype(get_area(W), /area/crew_quarters) && !istype(get_area(W), /area/security/prison))
 					W.req_access = list()
 			message_admins("[key_name_admin(usr)] activated Egalitarian Station mode")
-			priority_announce("Активировано блокирование управления воздушным шлюзом Центрального Коммандования. Пожалуйста, найдите время, чтобы познакомиться со своими коллегами.", null, 'sound/ai/commandreport.ogg')
+			priority_announce("Активировано блокирование управления воздушным шлюзом Центрального Командования. Пожалуйста, найдите время, чтобы познакомиться со своими коллегами.", null, 'sound/ai/commandreport.ogg')
 
 		if("ancap")
 			if(!check_rights(R_FUN))

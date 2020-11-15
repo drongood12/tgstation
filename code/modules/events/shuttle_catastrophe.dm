@@ -16,11 +16,11 @@
 	var/datum/map_template/shuttle/new_shuttle
 
 /datum/round_event/shuttle_catastrophe/announce(fake)
-	var/cause = pick("атакован [syndicate_name()] Operatives", "перенесён за видимую вселенную", "взорван работниками Центрального Коммандования",
+	var/cause = pick("атакован [syndicate_name()] Operatives", "перенесён за видимую вселенную", "взорван работниками Центрального Командования",
 		"разобран и продан", "\[REDACTED\]", "улетел на Солнце", "поглощён сингулярностью",
 		"стёрт из реальности", "врезался в ангар при парковке")
 
-	priority_announce("Ваш эвакуционный шатл был [cause] и поэтому вашим новым шаттлом станет [new_shuttle.name].", "Инженерный Отдел Центрального Коммандования")
+	priority_announce("Ваш эвакуционный шатл был [cause] и поэтому вашим новым шаттлом станет [new_shuttle.name].", "Инженерный Отдел Центрального Командования")
 
 /datum/round_event/shuttle_catastrophe/setup()
 	var/list/valid_shuttle_templates = list()

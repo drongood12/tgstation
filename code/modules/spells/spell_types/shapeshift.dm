@@ -71,7 +71,7 @@
 					if(possiblevent.parents.len && possiblevent.parents[1] == ourpipeline)
 						new gibtype(get_turf(possiblevent))
 						playsound(possiblevent, 'sound/effects/reee.ogg', 75, TRUE)
-				priority_announce("Мы обнаружити забитые трубы в [get_area(get_turf(M))]. Рекомендуется проверка всех труб.", "Центральное Коммандование")
+				priority_announce("Мы обнаружити забитые трубы в [get_area(get_turf(M))]. Рекомендуется проверка всех труб.", "Центральное Командование")
 				M.death()
 				qdel(M)
 				return

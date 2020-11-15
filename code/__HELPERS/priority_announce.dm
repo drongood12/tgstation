@@ -14,7 +14,7 @@
 
 	else
 		if(!sender_override)
-			announcement += "<h1 class='alert'>[command_name()] сообщает</h1>" //Не трогаю ибо могу сломать
+			announcement += "<h1 class='alert'>[command_name()] сообщает</h1>"
 		else
 			announcement += "<h1 class='alert'>[sender_override]</h1>"
 		if (title && length(title) > 0)
@@ -22,9 +22,9 @@
 
 		if(!sender_override)
 			if(title == "")
-				GLOB.news_network.SubmitArticle(text, "Новости Центрального Коммандования", "Объявление Станции", null)
+				GLOB.news_network.SubmitArticle(text, "Новости Центрального Командования", "Объявление Станции", null)
 			else
-				GLOB.news_network.SubmitArticle(title + "<br><br>" + text, "Центральное Коммандование", "Объявление Станции", null)
+				GLOB.news_network.SubmitArticle(title + "<br><br>" + text, "Центральное Командование", "Объявление Станции", null)
 
 	announcement += "<br><span class='alert'>[html_encode(text)]</span><br>"
 	announcement += "<br>"

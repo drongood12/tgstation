@@ -233,7 +233,7 @@ GLOBAL_VAR_INIT(dynamic_forced_threat_level, -1)
 			G.on_report()
 			. += G.get_report()
 
-	print_command_report(., "Сводка Центрального Коммандования", announce=FALSE)
+	print_command_report(., "Сводка Центрального Командования", announce=FALSE)
 	priority_announce("Сводка скопирована и распечатана на всех консолях связи.", "Код повышен.", 'sound/ai/intercept.ogg')
 	if(GLOB.security_level < SEC_LEVEL_BLUE)
 		set_security_level(SEC_LEVEL_BLUE)
