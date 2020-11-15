@@ -12,4 +12,4 @@
 	anomaly_path = /obj/effect/anomaly/bhole
 
 /datum/round_event/anomaly/anomaly_vortex/announce(fake)
-	priority_announce("Обнаружена вортекс аномали Сканером Дальнего Действия. Ожидаемое место появления: [impact_area.name]", "Предупреждение об аномалии")
+	priority_announce("Локализованная высокоинтенсивная вихревая аномалия, обнаруженная сканерами дальнего действия. Ожидаемое местоположение: [impact_area.name]", "Предупреждение об аномалии")
