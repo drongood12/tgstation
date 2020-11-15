@@ -14,7 +14,7 @@
 
 
 /datum/round_event/disease_outbreak/announce(fake)
-	priority_announce("Подтвержденная вспышка вируса, 7 уровня биологической опасности на борту [station_name()]. Весь персонал должен сдерживать вспышку.", "Оповещение о биологической опасности", 'sound/ai/outbreak7.ogg')
+	priority_announce("7 уровень угрозы обнаружен на [station_name()]. Весь персонал должен сдерживать опасность.", "Оповещение о биологической опасности", 'sound/ai/outbreak7.ogg')
 
 /datum/round_event/disease_outbreak/setup()
 	announceWhen = rand(15, 30)
