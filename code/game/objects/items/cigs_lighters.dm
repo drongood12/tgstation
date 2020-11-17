@@ -356,6 +356,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	desc = "A Xeno Filtered brand cigarette."
 	list_reagents = list (/datum/reagent/drug/nicotine = 20, /datum/reagent/medicine/regen_jelly = 15, /datum/reagent/drug/krokodil = 4)
 
+/obj/item/clothing/mask/cigarette/sausage
+	desc = "A piece of mixed, long meat."
+	inhand_icon_state = "sausage"
+	list_reagents = list (/datum/reagent/drug/nicotine = 10, /datum/reagent/toxin/mindbreaker = 4)
+	lung_harm = 0
+
 // Rollies.
 
 /obj/item/clothing/mask/cigarette/rollie

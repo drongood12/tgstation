@@ -132,6 +132,7 @@
 					/obj/item/clothing/gloves/fingerless = 3,
 					/obj/item/clothing/head/soft = 3,
 					/obj/item/radio/headset/headset_cargo = 3)
+	contraband = list(/obj/item/banner/cargo = 4)
 	premium = list(/obj/item/clothing/under/rank/cargo/miner = 3)
 	refill_canister = /obj/item/vending_refill/wardrobe/cargo_wardrobe
 	payment_department = ACCOUNT_CAR
@@ -309,6 +310,7 @@
 					/obj/item/clothing/shoes/galoshes = 2,
 					/obj/item/watertank/janitor = 1,
 					/obj/item/storage/belt/janitor = 2)
+	contraband = list(/obj/item/paper/fluff/stations/soap = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/jani_wardrobe
 	payment_department = ACCOUNT_SRV
 	light_color = COLOR_STRONG_MAGENTA
@@ -414,6 +416,8 @@
 					/obj/item/clothing/suit/toggle/labcoat/genetics = 2,
 					/obj/item/storage/backpack/genetics = 2,
 					/obj/item/storage/backpack/satchel/gen = 2)
+	contraband = list(/obj/item/clothing/mask/gas/monkeymask = 1,
+					  /obj/item/clothing/suit/monkeysuit = 1)
 	refill_canister = /obj/item/vending_refill/wardrobe/gene_wardrobe
 	payment_department = ACCOUNT_SCI
 /obj/item/vending_refill/wardrobe/gene_wardrobe

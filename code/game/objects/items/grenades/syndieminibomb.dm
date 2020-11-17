@@ -39,6 +39,16 @@
 	shrapnel_type = /obj/projectile/bullet/shrapnel/mega
 	shrapnel_radius = 12
 
+/obj/item/grenade/frag/toy
+	name = "Donksoft toy DART grenade"
+	desc = "Containing small amount of explosive payload and many fun with foam darts."
+	icon_state = "frag"
+	shrapnel_type = /obj/projectile/bullet/reusable/foam_dart/riot
+	shrapnel_radius = 12
+	ex_heavy = 0
+	ex_light = 0
+	ex_flame = 0
+
 /obj/item/grenade/frag/prime(mob/living/lanced_by)
 	. = ..()
 	update_mob()

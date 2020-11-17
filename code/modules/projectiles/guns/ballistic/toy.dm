@@ -124,3 +124,29 @@
 /obj/item/gun/ballistic/automatic/l6_saw/toy/update_overlays()
 	. = ..()
 	. += "[icon_state]_toy"
+
+/obj/item/grenade/toyflashbang
+	name = "Donksoft flashbang toy"
+	icon_state = "flashbang"
+	inhand_icon_state = "flashbang"
+	lefthand_file = 'icons/mob/inhands/equipment/security_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/equipment/security_righthand.dmi'
+	var/flashbang_range = 7 //how many tiles away the mob will be stunned.
+
+/obj/item/grenade/toyflashbang/prime(mob/living/lanced_by)
+	. = ..()
+	update_mob()
+	var/flashbang_turf = get_turf(src)
+	if(!flashbang_turf)
+		return
+	do_sparks(rand(5, 9), FALSE, src)
+	playsound(flashbang_turf, 'sound/weapons/flashbang.ogg', 100, TRUE, 8, 0.9)
+	new /obj/effect/dummy/lighting_obj (flashbang_turf, flashbang_range + 2, 4, COLOR_WHITE, 2)
+	for(var/mob/living/M in get_hearers_in_view(flashbang_range, flashbang_turf))
+		bang(get_turf(M), M)
+	qdel(src)
+
+/obj/item/grenade/toyflashbang/proc/bang(turf/T , mob/living/M)
+	if(M.stat == DEAD)	//They're dead!
+		return
+	M.show_message("<span class='warning'>BANG</span>", MSG_AUDIBLE)
