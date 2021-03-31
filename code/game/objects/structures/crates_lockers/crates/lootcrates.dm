@@ -16,7 +16,12 @@
 		/obj/item/clothing/gloves/tackler/combat/insulated = 10,
 		/obj/item/clothing/suit/space/hardsuit/ert/sec = 1
 	)
-
+	var/list/loot_table_melee = list(
+		/obj/item/kitchen/knife/shiv = 18,
+		/obj/item/kitchen/knife = 15,
+		/obj/item/kitchen/knife/butcher = 10,
+		/obj/item/kitchen/knife/combat = 5,
+	)
 	var/list/loot_table_heal = list(
 		/obj/item/reagent_containers/pill/patch/libital = 20,
 		/obj/item/reagent_containers/medigel/libital = 15,
@@ -50,6 +55,9 @@
 	//Check for an armour spawn
 	if(prob(50))
 		loot_content = loot_content + pickweight(loot_table_armor)
+	//chance for a melee item
+	if(prob(50))
+		loot_content = loot_content + pickweight(loot_table_melee)
 	//Check for a heal spawn
 	if(prob(70))
 		loot_content = loot_content +  pickweight(loot_table_heal)
