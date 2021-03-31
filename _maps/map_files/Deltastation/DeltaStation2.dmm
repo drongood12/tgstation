@@ -6766,6 +6766,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
 	},
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron/dark,
 /area/commons/toilet/auxiliary)
 "aHF" = (
@@ -6849,6 +6850,7 @@
 	pixel_x = -32;
 	pixel_y = 32
 	},
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/engine/vacuum,
 /area/command/heads_quarters/hop)
 "aIn" = (
@@ -9138,6 +9140,7 @@
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron,
 /area/engineering/main)
 "aTC" = (
@@ -10536,7 +10539,6 @@
 /obj/item/restraints/handcuffs,
 /obj/item/restraints/handcuffs,
 /obj/item/restraints/handcuffs,
-/obj/item/assembly/flash/handheld,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12080,6 +12082,20 @@
 	},
 /turf/open/floor/iron/white,
 /area/engineering/atmos)
+"boD" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron/dark,
+/area/engineering/main)
 "boH" = (
 /obj/structure/cable,
 /obj/machinery/power/apc/auto_name/north,
@@ -12318,6 +12334,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
 	},
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron,
 /area/engineering/lobby)
 "bqq" = (
@@ -16444,8 +16461,6 @@
 /turf/open/floor/iron/dark,
 /area/command/heads_quarters/hos)
 "bNs" = (
-/obj/item/storage/box/firingpins,
-/obj/item/storage/box/firingpins,
 /obj/item/key/security,
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
@@ -16461,15 +16476,6 @@
 /turf/open/floor/iron/dark,
 /area/command/heads_quarters/hop)
 "bNt" = (
-/obj/item/storage/box/teargas{
-	pixel_x = 3;
-	pixel_y = 3
-	},
-/obj/item/storage/box/handcuffs,
-/obj/item/storage/box/flashbangs{
-	pixel_x = -3;
-	pixel_y = -3
-	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -20425,8 +20431,6 @@
 	dir = 1
 	},
 /obj/structure/table/reinforced,
-/obj/item/gun/energy/e_gun/dragnet,
-/obj/item/gun/energy/e_gun/dragnet,
 /obj/structure/cable,
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -21700,7 +21704,6 @@
 "cgZ" = (
 /obj/structure/table/reinforced,
 /obj/item/restraints/handcuffs,
-/obj/item/assembly/flash/handheld,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -22327,7 +22330,6 @@
 /turf/open/floor/iron,
 /area/command/heads_quarters/rd)
 "ciN" = (
-/obj/machinery/vending/security,
 /obj/structure/sign/nanotrasen{
 	pixel_y = -32
 	},
@@ -33139,7 +33141,6 @@
 /turf/open/floor/iron,
 /area/engineering/main)
 "deC" = (
-/obj/structure/closet/secure_closet/chief_medical,
 /obj/item/clothing/under/rank/medical/doctor,
 /obj/item/clothing/head/nursehat,
 /obj/effect/turf_decal/stripes/line{
@@ -34271,6 +34272,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron/white,
 /area/commons/lounge)
 "dhz" = (
@@ -39929,7 +39931,6 @@
 /turf/open/floor/iron,
 /area/engineering/atmospherics_engine)
 "dzH" = (
-/obj/machinery/mecha_part_fabricator,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/engineering/atmospherics_engine)
@@ -40572,17 +40573,11 @@
 /obj/item/bodypart/l_arm/robot{
 	pixel_x = -3
 	},
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
 /obj/structure/table/reinforced,
 /obj/machinery/light_switch{
 	pixel_x = -38;
 	pixel_y = 26
 	},
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
-/obj/item/assembly/flash/handheld,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/engineering/atmos)
@@ -54791,6 +54786,7 @@
 /area/commons/storage/tools)
 "ffV" = (
 /obj/item/flashlight/seclite,
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
@@ -57081,6 +57077,16 @@
 	},
 /turf/open/floor/iron,
 /area/maintenance/starboard/central)
+"fNz" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron,
+/area/commons/storage/tools)
 "fNO" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -62513,6 +62519,20 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/commons/toilet/locker)
+"hpb" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron,
+/area/engineering/break_room)
 "hpn" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -65636,6 +65656,7 @@
 /obj/machinery/atmospherics/pipe/manifold/scrubbers/hidden/layer2{
 	dir = 1
 	},
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron,
 /area/maintenance/starboard/secondary)
 "ihy" = (
@@ -66706,6 +66727,11 @@
 	},
 /turf/open/floor/plating,
 /area/maintenance/external/aft)
+"ixf" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron,
+/area/maintenance/external/port/bow)
 "ixm" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/wall,
@@ -68822,6 +68848,21 @@
 /obj/structure/extinguisher_cabinet/directional/north,
 /turf/open/floor/iron,
 /area/command/heads_quarters/cmo)
+"jes" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron,
+/area/maintenance/starboard/secondary)
 "jeB" = (
 /obj/structure/lattice,
 /obj/structure/grille,
@@ -69444,6 +69485,21 @@
 	},
 /turf/open/floor/iron/white/corner,
 /area/command/teleporter)
+"jqs" = (
+/obj/structure/cable,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron,
+/area/maintenance/aft)
 "jqu" = (
 /obj/machinery/vending/cigarette,
 /obj/effect/turf_decal/tile/blue{
@@ -80796,6 +80852,20 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/iron,
 /area/maintenance/external/aft)
+"mzm" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/plating,
+/area/commons/storage/primary)
 "mzo" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/hydroponics/constructable,
@@ -83042,7 +83112,6 @@
 /turf/open/floor/iron,
 /area/cargo/miningdock)
 "ndz" = (
-/obj/structure/closet/secure_closet/research_director,
 /obj/machinery/computer/security/telescreen/entertainment{
 	pixel_x = -32
 	},
@@ -88386,6 +88455,20 @@
 /obj/machinery/airalarm/directional/south,
 /turf/open/floor/iron/dark,
 /area/commons/dorms)
+"oyf" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron/dark,
+/area/engineering/atmos)
 "oyh" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -89324,9 +89407,19 @@
 /turf/open/floor/iron,
 /area/maintenance/aft)
 "oKZ" = (
-/obj/effect/spawner/structure/window/plasma/reinforced,
-/turf/open/floor/plating,
-/area/command/teleporter)
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron/dark,
+/area/engineering/atmospherics_engine)
 "oLh" = (
 /obj/machinery/light{
 	dir = 1
@@ -91829,6 +91922,7 @@
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2{
 	dir = 8
 	},
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron/grimy,
 /area/engineering/atmospherics_engine)
 "pta" = (
@@ -97263,6 +97357,10 @@
 	},
 /turf/open/floor/iron,
 /area/maintenance/external/port/bow)
+"qPG" = (
+/obj/effect/spawner/lootdrop/lootcrate,
+/turf/open/floor/iron/white,
+/area/engineering/lobby)
 "qPL" = (
 /obj/effect/turf_decal/tile/neutral,
 /obj/machinery/atmospherics/pipe/manifold/supply/hidden/layer4{
@@ -102334,6 +102432,7 @@
 /area/commons/toilet/auxiliary)
 "shx" = (
 /obj/structure/cable,
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/plating,
 /area/commons/toilet/auxiliary)
 "shE" = (
@@ -104474,7 +104573,6 @@
 	},
 /obj/structure/table/wood,
 /obj/item/restraints/handcuffs,
-/obj/item/assembly/flash/handheld,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4{
 	dir = 4
 	},
@@ -109870,6 +109968,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron,
 /area/commons/toilet/locker)
 "umZ" = (
@@ -114340,6 +114439,7 @@
 /obj/effect/landmark/event_spawn,
 /obj/machinery/atmospherics/pipe/simple/supply/hidden/layer4,
 /obj/machinery/atmospherics/pipe/simple/scrubbers/hidden/layer2,
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron,
 /area/engineering/main)
 "vxk" = (
@@ -115887,7 +115987,6 @@
 /turf/open/floor/iron/dark,
 /area/commons/locker)
 "vSw" = (
-/obj/structure/closet/secure_closet/engineering_chief,
 /obj/machinery/button/door{
 	id = "ceprivacy";
 	name = "Privacy Control";
@@ -117711,7 +117810,6 @@
 "wva" = (
 /obj/structure/table/reinforced,
 /obj/item/restraints/handcuffs,
-/obj/item/assembly/flash/handheld,
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -120930,6 +121028,7 @@
 /obj/machinery/atmospherics/pipe/simple/yellow/visible{
 	dir = 4
 	},
+/obj/effect/spawner/lootdrop/lootcrate,
 /turf/open/floor/iron,
 /area/commons/storage/mining)
 "xpb" = (
@@ -146114,19 +146213,19 @@ sCP
 qXa
 jIn
 rTe
-oKZ
+ojC
 iTU
 jIn
 rTe
-oKZ
+ojC
 iTU
 jIn
 rTe
-oKZ
+ojC
 iTU
 jIn
 iTU
-oKZ
+ojC
 rTe
 jIn
 rpV
@@ -158751,7 +158850,7 @@ xRF
 icc
 xRF
 uOr
-xRF
+jes
 xRF
 xRF
 xhF
@@ -161780,7 +161879,7 @@ qRN
 hgQ
 kUs
 ijJ
-mvD
+oKZ
 orf
 eMI
 ofO
@@ -164881,7 +164980,7 @@ gbC
 cmw
 uLw
 wcQ
-atO
+ixf
 fFQ
 tMY
 uwm
@@ -165463,7 +165562,7 @@ iCY
 sNC
 rKo
 dpi
-dcO
+qPG
 dqW
 kqs
 iiu
@@ -168005,7 +168104,7 @@ sxZ
 cxM
 idT
 iQr
-idT
+jqs
 idT
 idT
 idT
@@ -169258,11 +169357,11 @@ emJ
 nKJ
 tMW
 xdD
-qaI
+boD
 kiz
 qlT
 qaI
-qaI
+boD
 xdD
 tMW
 nKJ
@@ -170831,7 +170930,7 @@ crn
 csP
 qnq
 oZQ
-xHY
+hpb
 kcV
 qnq
 lcG
@@ -171630,7 +171729,7 @@ lDq
 uRQ
 nfM
 sWK
-sWK
+oyf
 drn
 dsK
 onv
@@ -173667,7 +173766,7 @@ jiT
 aOR
 oYb
 lMJ
-tOQ
+fNz
 rDX
 cSQ
 cPN
@@ -174165,7 +174264,7 @@ cgR
 ciB
 bWJ
 lJb
-mvV
+mzm
 cHW
 bKS
 qgo
