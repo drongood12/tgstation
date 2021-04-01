@@ -67,6 +67,11 @@
 	mood_change = -16
 	timeout = 2 MINUTES
 
+/datum/mood_event/burnt_out
+	description = "<span class='warning'>It all feels like a chore now...</span>\n"
+	mood_change = -14
+	timeout = 2 MINUTES
+
 /datum/mood_event/shameful_suicide //suicide_acts that return SHAME, like sord
 	description = "<span class='boldwarning'>I can't even end it all!</span>\n"
 	mood_change = -15

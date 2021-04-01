@@ -43,7 +43,9 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/carbontarget = target
-		SEND_SIGNAL(carbontarget, COMSIG_ADD_MOOD_EVENT, "hell-practice laser", /datum/mood_event/depression_moderate) //oh my god you burned them out you monster
+		carbontarget.visible_message("<span class='notice'>[carbontarget] looks a bit tired.</span>", \
+		"<span class='warning'>This practice just isn't fun anymore...</span>")
+		SEND_SIGNAL(carbontarget, COMSIG_ADD_MOOD_EVENT, "hell-practice laser", /datum/mood_event/burnt_out) //oh my god you burned them out you monster
 
 /obj/projectile/beam/laser/heavylaser
 	name = "heavy practice laser"
