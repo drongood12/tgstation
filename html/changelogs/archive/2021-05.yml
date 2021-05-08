@@ -178,3 +178,73 @@
       in their place.
   tralezab:
   - rscadd: 'Cargo requests can now be discussed over #cargobus!'
+2021-05-07:
+  Celotajs:
+  - bugfix: GAGS-generated clothing can now have proper blood splatters and damage
+  Fikou:
+  - imageadd: centers hydroponic sprays, adds new sprites for plant-b-gone
+  Greniza:
+  - imageadd: New candle animations
+  - imageadd: New animations for altar candles
+  InsaneRed:
+  - bugfix: Icebox incinerator input will now connect correctly to the injector instead
+      of the waste system
+  - bugfix: Fixes tramstation incinerator mix input and scrubber not getting properly
+      connected and some random layer adapters being visible inside walls.
+  MMMiracles:
+  - rscadd: Tramstation now has several new cameras to help the AI look over the map.
+  - rscadd: Tramstation now has a public lavaland dock beside the Research wing.
+  - bugfix: Tramstation paramedics now have Cargo access.
+  Maurukas:
+  - bugfix: spammable logging in chem grenades
+  Owai-Seek:
+  - rscadd: BBQ Sauce can now be ordered in the kitchen console.
+  RandomGamer123:
+  - bugfix: Syndicate uplink types can now be changed again
+  - bugfix: Radio uplink frequencies are now random again
+  SparkezelPL:
+  - bugfix: Single tank bombs no longer just delete themselves
+  manofpepsi:
+  - rscadd: The old delta maint is back! (with minor changes), the delta warehouse
+      is now split into two for the drone bay.
+  necromanceranne:
+  - bugfix: Prevents guns that can misfire reaching 100% probability.
+  norill:
+  - bugfix: fixed buggy organ fridges repair rate
+  - bugfix: fixed upgraded organ fridges not repairing organs
+  prodirus:
+  - bugfix: The cursed slot machine sprite in the Greed lavaland ruin is now slightly
+      less cursed.
+  tralezab:
+  - bugfix: dogs now resist before fetching or harassing, to unbuckle from stuff if
+      they need to
+2021-05-08:
+  ArcaneDefence:
+  - bugfix: Felinids are disgusted by raw and gross foods again.
+  Celotajs:
+  - bugfix: Fixed PDA overlays for GAGS PDAs
+  EOBGames:
+  - bugfix: Removed the gamer cube in Delta cargo.
+  Fikou:
+  - admin: moves sdql spell from debug tab to vv dropdown
+  Greniza:
+  - bugfix: Made the PDA painter be able to paint PDAs into standard PDAs.
+  - bugfix: Made the PDA painter able to paint PDAs again after 58844 did not update
+      the painter.
+  Kylerace:
+  - refactor: tram is marginally faster
+  Time-Green:
+  - rscadd: Miners can now discover geysers with their mining scanner for a point
+      reward! This will discover their type and mark that geyser (with type) on the
+      GPS system.
+  - rscdel: removes the ClF3 geysers
+  - rscadd: Adds a very rare strange geyser that has a random reagent (maintpill/strange
+      seed style)
+  - balance: Geysers can now be activated with normal, cheap plungers
+  interestingusernam3:
+  - bugfix: Messages related to becoming and ceasing to be a heretic monster are now
+      more noticeable.
+  tralezab:
+  - refactor: is_flying_animal var is now an element!
+  - refactor: pet bonuses are now an element
+  - admin: Added fantasy affixes to the VV dropdown for items!
