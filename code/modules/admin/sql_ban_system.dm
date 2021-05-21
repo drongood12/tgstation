@@ -477,12 +477,8 @@
 					qdel(query_create_ban_get_player)
 					return
 			else
-<<<<<<< HEAD
-				if(alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", "Yes", "No", "Cancel") != "Yes")
-					SSredbot.send_discord_message("admin", "Игрок [usr.ckey] ([usr.real_name]): [name] забанен", "ticket")
-=======
 				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
->>>>>>> 999fa5508d57b0c6c5c821c2497670e21fe83927
+					SSredbot.send_discord_message("admin", "Игрок [usr.ckey] ([usr.real_name]): [name] забанен", "ticket")
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
