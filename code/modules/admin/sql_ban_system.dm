@@ -496,7 +496,7 @@
 					return
 			else
 				if(tgui_alert(usr, "[player_key]/([player_ckey]) has not been seen before, are you sure you want to create a ban for them?", "Unknown key", list("Yes", "No", "Cancel")) != "Yes")
-					SSredbot.send_discord_message("admin", "Игрок [usr.ckey] ([usr.real_name]): [name] забанен", "ticket")
+					// SSredbot.send_discord_message("admin", "Игрок [usr.ckey] ([usr.real_name]): [name] забанен", "ticket")
 					qdel(query_create_ban_get_player)
 					return
 		qdel(query_create_ban_get_player)
@@ -552,16 +552,9 @@
 	if(!SSdbcore.MassInsert(format_table_name("ban"), sql_ban, warn = TRUE, special_columns = special_columns))
 		return
 	var/target = ban_target_string(player_key, player_ip, player_cid)
-<<<<<<< HEAD
-	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "server ban" : "role ban from [roles_to_ban.len] roles"] for [target]."
-	SSredbot.send_discord_message("admin", "Игрок [player_key] был забанен [isnull(duration) ? "перманентно" : "временно на [time_message]"] [applies_to_admins ? "admin " : ""][roles_to_ban[1] == "Server" ? "на сервере" : "по ролям: [roles_to_ban.Join(", ")]"]. Причина: [reason]", "ban")
-	log_admin_private("[kn] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
-	message_admins("[kna] [msg][roles_to_ban[1] == "Server" ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
-=======
 	var/msg = "has created a [isnull(duration) ? "permanent" : "temporary [time_message]"] [applies_to_admins ? "admin " : ""][is_server_ban ? "server ban" : "role ban from [roles_to_ban.len] roles"] for [target]."
 	log_admin_private("[kn] [msg][is_server_ban ? "" : " Roles: [roles_to_ban.Join(", ")]"] Reason: [reason]")
 	message_admins("[kna] [msg][is_server_ban ? "" : " Roles: [roles_to_ban.Join("\n")]"]\nReason: [reason]")
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 	if(applies_to_admins)
 		send2adminchat("BAN ALERT","[kn] [msg]")
 	if(player_ckey)

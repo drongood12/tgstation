@@ -63,22 +63,6 @@
 	return
 
 /datum/customer_data/american
-<<<<<<< HEAD
-	orderable_objects = list(
-	/datum/venue/restaurant = list(/obj/item/food/burger/plain = 25, /obj/item/food/burger/cheese = 15, /obj/item/food/burger/superbite = 1, /obj/item/food/fries = 10, /obj/item/food/cheesyfries = 6, /obj/item/food/pie/applepie = 4, /obj/item/food/pie/pumpkinpie = 2, /obj/item/food/hotdog = 8, /obj/item/food/pizza/pineapple = 1, /obj/item/food/burger/baconburger = 10, /obj/item/food/pancakes = 4),
-	/datum/venue/bar = list(/datum/reagent/consumable/ethanol/b52 = 6, /datum/reagent/consumable/ethanol/manhattan = 3, /datum/reagent/consumable/ethanol/atomicbomb = 1, /datum/reagent/consumable/ethanol/beer = 25))
-
-
-	found_seat_lines = list("Я надеюсь, что есть сиденье, которое выдержит мой вес.", "Я надеюсь, что смогу принести сюда свой пистолет.", "Надеюсь, у вас есть тройной роскошный жирный бургер.", "Мне просто здесь нравится.")
-	cant_find_seat_lines = list("Я так устала стоять...", "У меня хроническая боль в спине, пожалуйста, поторопитесь и усадите меня!", "Я не собираюсь давать чаевые, если не сяду.")
-	leave_mad_lines = list("НИКАКИХ СОВЕТОВ ДЛЯ ВАС. ПРОЩАЙ!", "По крайней мере, в SpaceDonalds еду подают БЫСТРО!", "Это ужасное место!", "Я поговорю с вашим менеджером!", "Я обязательно оставлю плохой отзыв о Yelp.")
-	leave_happy_lines = list("Дополнительный совет для тебя, мой друг.", "Спасибо за отличную еду!", "Диабет - это все равно миф!")
-	wait_for_food_lines = list("Послушай, дружище, я очень нетерпеливый!", "Я жду целую вечность...")
-	friendly_pull_line = "Куда вы меня везете? Не в медбей, надеюсь, у меня нет страховки."
-	first_warning_line = "Не наступай на меня!"
-	second_warning_line = "Последний шанс, приятель! Не наступай на меня!"
-	self_defense_line = "CASTLE DOCTRINE АКТИВИРОВАН!"
-=======
 	found_seat_lines = list("I hope there's a seat that supports my weight.", "I hope I can bring my gun in here.", "I hope they have the triple deluxe fatty burger.", "I just love the culture here.")
 	cant_find_seat_lines = list("I'm so tired from standing...", "I have chronic back pain, please hurry up and get me a seat!", "I'm not going to tip if I don't get a seat.")
 	leave_mad_lines = list("NO TIP FOR YOU. GOODBYE!", "At least at SpaceDonalds they serve their food FAST!", "This venue is horrendous!", "I will speak to your manager!", "I'll be sure to leave a bad Yelp review.")
@@ -88,7 +72,6 @@
 	first_warning_line = "Don't tread on me!"
 	second_warning_line = "Last chance buddy! Don't tread on me!"
 	self_defense_line = "CASTLE DOCTRINE ACTIVATED!"
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 
 	orderable_objects = list(
 		VENUE_RESTAURANT = list(
@@ -375,20 +358,6 @@
 	speech_sound = 'sound/creatures/tourist/tourist_talk_mexican.ogg'
 	clothing_sets = list("mexican_poncho")
 	orderable_objects = list(
-<<<<<<< HEAD
-	/datum/venue/restaurant = list(/obj/item/food/taco/plain = 25, /obj/item/food/taco = 15 , /obj/item/food/burrito = 15, /obj/item/food/fuegoburrito = 1, /obj/item/food/cheesyburrito = 4, /obj/item/food/nachos = 10, /obj/item/food/cheesynachos = 6, /obj/item/food/pie/dulcedebatata = 2, /obj/item/food/cubannachos = 3, /obj/item/food/stuffedlegion = 1),
-	/datum/venue/bar = list(/datum/reagent/consumable/ethanol/whiskey = 6, /datum/reagent/consumable/ethanol/tequila = 20, /datum/reagent/consumable/ethanol/tequila_sunrise = 1, /datum/reagent/consumable/ethanol/beer = 15, /datum/reagent/consumable/ethanol/patron = 5, /datum/reagent/consumable/ethanol/brave_bull = 5, /datum/reagent/consumable/ethanol/margarita = 8))
-
-	found_seat_lines = list("¿Como te va, space station 13?", "Кто готов к вечеринке!", "Ah, muchas gracias.", "Ааа, пахнет кулинарией mi abuela!")
-	cant_find_seat_lines = list("¿En Serio? Серьезно, мест нет?", "Andele! Я хочу сесть за стол, чтобы смотреть футбольный матч!", "Ay Caramba...")
-	leave_mad_lines = list("Aye dios mio, Я ухожу отсюда", "Esto es ridículo! Я ухожу", "Я видел, как готовят лучше в тако кампана!", "Я думал, это ресторан, pero es porquería!")
-	leave_happy_lines = list("Amigo, era delicio. Спасибо!", "Yo tuve el mono, а твой друг? Вы попали в точку.", "Как раз нужное количество острого!")
-	wait_for_food_lines = list("Эй, эй, эй, что так долго?...", "Ты уже закончил, амиго?")
-	friendly_pull_line = "Амиго, куда мы направляемся?"
-	first_warning_line = "Амиго! Не трогай меня так."
-	second_warning_line = "Compadre, хватит, хватит! Последнее предупреждение!"
-	self_defense_line = "Пора тебе узнать, что я за робот, а?"
-=======
 		VENUE_RESTAURANT = list(
 			/obj/item/food/taco/plain = 25,
 			/obj/item/food/taco = 15,
@@ -421,7 +390,6 @@
 	first_warning_line = "Amigo! Don't touch me like that."
 	second_warning_line = "Compadre, enough is enough! Last warning!"
 	self_defense_line = "Time for you to find out what kind of robot I am, eh?"
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 
 /datum/customer_data/british
 	base_icon_state = "british"

@@ -24,13 +24,15 @@
 /// Folder directory for strings
 #define STRING_DIRECTORY "strings"
 
-// JSON text files found in the tgstation/strings folder 
+// JSON text files found in the tgstation/strings folder
 /// File location for brain damage traumas
 #define BRAIN_DAMAGE_FILE "traumas.json"
 /// File location for AI ion laws
 #define ION_FILE "ion_laws.json"
 /// File location for pirate names
 #define PIRATE_NAMES_FILE "pirates.json"
+/// File location for AI ion laws RU
+#define ION_FILE_RU "ion_laws_ru.json"
 /// File location for redpill questions
 #define REDPILL_FILE "redpill.json"
 /// File location for arcade names

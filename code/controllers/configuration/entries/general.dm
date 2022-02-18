@@ -57,17 +57,14 @@
 	integer = TRUE
 	min_val = 0
 
-<<<<<<< HEAD
-/datum/config_entry/flag/log_looc	// log LOOC channel
+/// log messages sent in LOOC
+/datum/config_entry/flag/log_looc
 
-/datum/config_entry/flag/log_ooc	// log OOC channel
-=======
 /// log messages sent in OOC
 /datum/config_entry/flag/log_ooc
 
 /// log login/logout
 /datum/config_entry/flag/log_access
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 
 /// Config entry which special logging of failed logins under suspicious circumstances.
 /datum/config_entry/flag/log_suspicious_login
@@ -121,17 +118,6 @@
 /// log emotes
 /datum/config_entry/flag/log_emote
 
-<<<<<<< HEAD
-/datum/config_entry/string/bot_ip
-
-/datum/config_entry/flag/log_adminchat	// log admin chat messages
-	protection = CONFIG_ENTRY_LOCKED
-
-/datum/config_entry/string/medal_hub_password
-	protection = CONFIG_ENTRY_HIDDEN
-
-/datum/config_entry/flag/log_pda	// log pda messages
-=======
 /// log economy actions
 /datum/config_entry/flag/log_econ
 
@@ -144,7 +130,6 @@
 
 /// log uplink/spellbook/codex ciatrix purchases and refunds
 /datum/config_entry/flag/log_uplink
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 
 /// log telecomms messages
 /datum/config_entry/flag/log_telecomms
@@ -170,14 +155,11 @@
 /// allows admins with relevant permissions to have their own ooc colour
 /datum/config_entry/flag/allow_admin_ooccolor
 
-<<<<<<< HEAD
+/// allows admins with relevant permissions to have their own LOOC colour
 /datum/config_entry/flag/allow_admin_looccolor
 
-/datum/config_entry/flag/allow_admin_asaycolor //Allows admins with relevant permissions to have a personalized asay color
-=======
 /// allows admins with relevant permissions to have a personalized asay color
 /datum/config_entry/flag/allow_admin_asaycolor
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 
 /// allow votes to restart
 /datum/config_entry/flag/allow_vote_restart

@@ -259,14 +259,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			write_preference(preference, preference.serialize(value_cache[preference_type]))
 
 	//general preferences
-<<<<<<< HEAD
-	WRITE_FILE(S["asaycolor"], asaycolor)
-	WRITE_FILE(S["brief_outfit"], brief_outfit)
-	WRITE_FILE(S["ooccolor"], ooccolor)
-	WRITE_FILE(S["looccolor"], looccolor)
-	WRITE_FILE(S["screentip_color"], screentip_color)
-=======
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 	WRITE_FILE(S["lastchangelog"], lastchangelog)
 	WRITE_FILE(S["be_special"], be_special)
 	WRITE_FILE(S["default_slot"], default_slot)

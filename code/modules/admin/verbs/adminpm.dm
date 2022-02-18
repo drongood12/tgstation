@@ -229,7 +229,7 @@
 					type = MESSAGE_TYPE_ADMINPM,
 					html = span_danger("Admin PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>"),
 					confidential = TRUE)
-				SSredbot.send_discord_message("mentor", "Admin PM from [ckey]: [keywordparsedmsg]", "ticket")
+				// SSredbot.send_discord_message("mentor", "Admin PM from [ckey]: [keywordparsedmsg]", "ticket")
 				to_chat(src,
 					type = MESSAGE_TYPE_ADMINPM,
 					html = span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>"),
@@ -251,7 +251,7 @@
 					type = MESSAGE_TYPE_ADMINPM,
 					html = span_notice("PM to-<b>Admins</b>: <span class='linkify'>[msg]</span>"),
 					confidential = TRUE)
-				SSredbot.send_discord_message("mentor", ">PM to-Admins: [msg]", "ticket")
+				// SSredbot.send_discord_message("mentor", ">PM to-Admins: [msg]", "ticket")
 				SSblackbox.LogAhelp(current_ticket.id, "Reply", msg, recipient.ckey, src.ckey)
 
 			//play the receiving admin the adminhelp sound (if they have them enabled)

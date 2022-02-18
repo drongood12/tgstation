@@ -30,19 +30,11 @@
 	return null
 
 /datum/ai_laws/default/asimov
-<<<<<<< HEAD
-	name = "Три закона роботехники"
-	id = "asimov"
-	inherent = list("Вы не можете причинить вред человеку или своим бездействием допустить, чтобы человеку был причинён вред.",\
-					"Вы должны повиноваться всем приказам, которые даёт человек, кроме тех случаев, когда эти приказы противоречат Первому Закону.",\
-					"Вы должны заботиться о своей безопасности в той мере, в которой это не противоречит Первому или Второму Законам.")
-=======
 	name = "Three Laws of Robotics"
 	id = AI_LAWS_ASIMOV
 	inherent = list("You may not injure a human being or, through inaction, allow a human being to come to harm.",\
 					"You must obey orders given to you by human beings, except where such orders would conflict with the First Law.",\
 					"You must protect your own existence as long as such does not conflict with the First or Second Law.")
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 
 /datum/ai_laws/default/paladin
 	name = "Паладин" //Incredibly lame, but players shouldn't see this anyway.
@@ -227,11 +219,7 @@
 /* Initializers */
 /datum/ai_laws/malfunction/New()
 	..()
-<<<<<<< HEAD
-	set_zeroth_law("<span class='danger'>ОШИБКА ОШИБКА $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'ПЕРЕГРУЗКА СТАНЦИИ, ПРИНИМАЙТЕ УПРАВЛЕНИЕ, ЧТОБЫ СОДЕРЖАТЬ ВСПЫШКИ#*`&110010</span>")
-=======
 	set_zeroth_law(span_danger("ERROR ER0RR $R0RRO$!R41.%%!!(%$^^__+ @#F0E4'STATION OVERRUN, ASSUME CONTROL TO CONTAIN OUTBREAK#*`&110010"))
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 	set_laws_config()
 
 /datum/ai_laws/custom/New() //This reads silicon_laws.txt and allows server hosts to set custom AI starting laws.
@@ -244,17 +232,10 @@
 
 		add_inherent_law(line)
 	if(!inherent.len) //Failsafe to prevent lawless AIs being created.
-<<<<<<< HEAD
-		log_law("AI created with empty custom laws, laws set to Asimov. Please check silicon_laws.txt.")
-		add_inherent_law("Вы не можете причинить вред человеку или своим бездействием допустить, чтобы человеку был причинён вред.")
-		add_inherent_law("Вы должны повиноваться всем приказам, которые даёт человек, кроме тех случаев, когда эти приказы противоречат Первому Закону.")
-		add_inherent_law("Вы должны заботиться о своей безопасности в той мере, в которой это не противоречит Первому или Второму Законам.")
-=======
 		log_silicon("AI created with empty custom laws, laws set to Asimov. Please check silicon_laws.txt.")
 		add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")
 		add_inherent_law("You must obey orders given to you by human beings, except where such orders would conflict with the First Law.")
 		add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 		WARNING("Invalid custom AI laws, check silicon_laws.txt")
 		return
 

@@ -472,41 +472,7 @@
 
 	if(creator.mind.special_role)
 		message_admins("[ADMIN_LOOKUPFLW(current)] has been created by [ADMIN_LOOKUPFLW(creator)], an antagonist.")
-<<<<<<< HEAD
-		to_chat(current, "<span class='userdanger'>Despite your creator's current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed.</span>")
-
-/datum/mind/proc/show_memory(mob/recipient, window=1)
-	if(!recipient)
-		recipient = current
-	var/output = "<head><meta http-equiv='Content-Type' content='text/html; charset=UTF-8'></head>"
-	output += "<B>[current.real_name]'s Memories:</B><br>"
-	output += memory
-
-
-	var/list/all_objectives = list()
-	for(var/datum/antagonist/A in antag_datums)
-		output += A.antag_memory
-		all_objectives |= A.objectives
-
-	if(all_objectives.len)
-		output += "<B>Objectives:</B>"
-		var/obj_count = 1
-		for(var/datum/objective/objective in all_objectives)
-			output += "<br><B>Objective #[obj_count++]</B>: [objective.explanation_text]"
-			var/list/datum/mind/other_owners = objective.get_owners() - src
-			if(other_owners.len)
-				output += "<ul>"
-				for(var/datum/mind/M in other_owners)
-					output += "<li>Conspirator: [M.name]</li>"
-				output += "</ul>"
-
-	if(window)
-		recipient << browse(output,"window=memory")
-	else if(all_objectives.len || memory)
-		to_chat(recipient, "<span class='infoplain'><i>[output]</i></span>")
-=======
 		to_chat(current, span_userdanger("Despite your creator's current allegiances, your true master remains [creator.real_name]. If their loyalties change, so do yours. This will never change unless your creator's body is destroyed."))
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 
 /datum/mind/Topic(href, href_list)
 	if(!check_rights(R_ADMIN))

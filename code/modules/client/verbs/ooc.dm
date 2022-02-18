@@ -1,13 +1,9 @@
 GLOBAL_VAR_INIT(OOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
 GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
-
-<<<<<<< HEAD
 GLOBAL_VAR_INIT(LOOC_COLOR, null)//If this is null, use the CSS for OOC. Otherwise, use a custom colour.
 GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 
-=======
 ///talking in OOC uses this
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 /client/verb/ooc(msg as text)
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
@@ -99,19 +95,8 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 					var/ooc_color = prefs.read_preference(/datum/preference/color/ooc_color)
 					to_chat(receiver, span_adminooc("[CONFIG_GET(flag/allow_admin_ooccolor) && ooc_color ? "<font color=[ooc_color]>" :"" ][span_prefix("OOC:")] <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span>"), avoid_highlighting = avoid_highlight)
 				else
-<<<<<<< HEAD
-					if(GLOB.OOC_COLOR)
-						SSredbot.send_discord_message("admin", "[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]: [msg]", "OOC")
-						to_chat(C, "<span class='oocplain'><font color='[GLOB.OOC_COLOR]'><b><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font></span>")
-					else
-						SSredbot.send_discord_message("admin", "[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]: [msg]", "OOC")
-						to_chat(C, "<span class='ooc'><span class='prefix'>OOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span>")
-
-			else if(!(key in C.prefs.ignoring))
-=======
 					to_chat(receiver, span_adminobserverooc(span_prefix("OOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]")), avoid_highlighting = avoid_highlight)
 			else
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 				if(GLOB.OOC_COLOR)
 					to_chat(receiver, "<span class='oocplain'><font color='[GLOB.OOC_COLOR]'><b>[span_prefix("OOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
 				else
@@ -179,166 +164,24 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 	log_admin("[key_name_admin(usr)] has reset player ooc color.")
 	GLOB.OOC_COLOR = null
 
-<<<<<<< HEAD
-
-/client/verb/colorooc()
-	set name = "Set Your OOC Color"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-	var/new_ooccolor = input(src, "Please select your OOC color.", "OOC color", prefs.ooccolor) as color|null
-	if(isnull(new_ooccolor))
-		return
-	new_ooccolor = sanitize_ooccolor(new_ooccolor)
-	prefs.ooccolor = new_ooccolor
-	prefs.save_preferences()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set OOC Color") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
-/client/verb/resetcolorooc()
-	set name = "Reset Your OOC Color"
-	set desc = "Returns your OOC Color to default"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-		prefs.ooccolor = initial(prefs.ooccolor)
-		prefs.save_preferences()
-
-/client/verb/looc(msg as text)
-	set name = "LOOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
-	set category = "OOC"
-
-	if(GLOB.say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='danger'>Speech is currently admin-disabled.</span>")
-		return
-
-	if(!mob)
-		return
-
-	if(!holder)
-		//TODO разобраться почему по умолчанию выставляется FALSE
-		// if(!GLOB.looc_allowed)
-		// 	to_chat(src, "<span class='danger'>LOOC is globally muted.</span>")
-		// 	return
-		if(!GLOB.dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "<span class='danger'>LOOC for dead mobs has been turned off.</span>")
-			return
-		if(prefs.muted & MUTE_LOOC)
-			to_chat(src, "<span class='danger'>You cannot use LOOC (muted).</span>")
-			return
-	if(is_banned_from(ckey, "LOOC"))
-		to_chat(src, "<span class='danger'>You have been banned from LOOC.</span>")
-		return
-	if(QDELETED(src))
-		return
-
-	msg = copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN)
-	var/raw_msg = msg
-
-	if(!msg)
-		return
-
-	msg = emoji_parse(msg)
-
-	if(SSticker.HasRoundStarted() && (msg[1] in list(".",";",":","#") || findtext_char(msg, "say", 1, 5)))
-		if(alert("Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in LOOC?", "Meant for LOOC?", "Yes", "No") != "Yes")
-			return
-
-	if(!holder)
-		if(handle_spam_prevention(msg,MUTE_OOC))
-			return
-		if(findtext(msg, "byond://"))
-			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
-			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
-			return
-
-	if(!(prefs.chat_toggles & CHAT_LOOC))
-		to_chat(src, "<span class='danger'>You have LOOC muted.</span>")
-		return
-
-	mob.log_talk(raw_msg, LOG_LOOC)
-
-	var/keyname = key
-
-	if(prefs.hearted)
-		var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
-		keyname = "[sheet.icon_tag("emoji-heart")][keyname]"
-	if(prefs.unlock_content)
-		if(prefs.toggles & MEMBER_PUBLIC)
-			keyname = "<font color='[prefs.looccolor ? prefs.looccolor : GLOB.normal_looc_colour]'>[icon2html('icons/member_content.dmi', world, "blag")][keyname]</font>"
-
-	var/mob/source = mob.get_looc_source()
-	var/list/heard = get_hearers_in_view(7, source)
-
-	for(var/client/target in GLOB.clients)
-		if(target.prefs.chat_toggles & CHAT_LOOC)
-			if(holder?.fakekey in target.prefs.ignoring)
-				continue
-			var/send = 0
-
-			if(target.mob in heard)
-				send = 1
-
-			else if(isAI(target.mob)) // Special case
-				var/mob/living/silicon/ai/A = target.mob
-				if(A.eyeobj in hearers(7, source))
-					send = 1
-
-			if(!send && (target in GLOB.admins))
-				if(check_rights(R_ADMIN,0,target.mob))
-					send = 1
-
-			if(holder && send)
-				if(!holder.fakekey || target.holder)
-					if(check_rights_for(src, R_ADMIN))
-						to_chat(target, "<span class='adminlooc'>[CONFIG_GET(flag/allow_admin_looccolor) && prefs.looccolor ? "<font color=[prefs.looccolor]>" :"" ]<span class='prefix'>LOOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span></font>")
-					else
-						to_chat(target, "<span class='adminobserverlooc'><span class='prefix'>LOOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span></span>")
-				else
-					if(GLOB.LOOC_COLOR)
-						to_chat(target, "<font color='[GLOB.LOOC_COLOR]'><b><span class='prefix'>LOOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font>")
-					else
-						to_chat(target, "<span class='looc'><span class='prefix'>LOOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></span>")
-
-			else if(!(key in target.prefs.ignoring) && send)
-				if(GLOB.LOOC_COLOR)
-					to_chat(target, "<font color='[GLOB.LOOC_COLOR]'><b><span class='prefix'>LOOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font>")
-				else
-					to_chat(target, "<span class='looc'><span class='prefix'>LOOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></span>")
-
-
-/mob/proc/get_looc_source()
-	return src
-
-/mob/living/silicon/ai/get_looc_source()
-	if(eyeobj)
-		return eyeobj
-	return src
-
 /client/proc/set_looc()
 	set name = "Set Player LOOC Color"
 	set desc = "Modifies player LOOC Color"
 	set category = "Server"
 	if(IsAdminAdvancedProcCall())
 		return
-	var/newColor = input(src, "Please select the new player LOOC color.", "OLOC color") as color|null
+	var/newColor = input(src, "Please select the new player LOOC color.", "LOOC color") as color|null
 	if(isnull(newColor))
 		return
 	if(!check_rights(R_FUN))
 		message_admins("[usr.key] has attempted to use the Set Player LOOC Color verb!")
 		log_admin("[key_name(usr)] tried to set player looc color without authorization.")
 		return
-	var/new_color = sanitize_looccolor(newColor)
+	var/new_color = sanitize_color(newColor)
 	message_admins("[key_name_admin(usr)] has set the players' looc color to [new_color].")
 	log_admin("[key_name_admin(usr)] has set the player looc color to [new_color].")
 	GLOB.LOOC_COLOR = new_color
+
 
 /client/proc/reset_looc()
 	set name = "Reset Player LOOC Color"
@@ -346,7 +189,7 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 	set category = "Server"
 	if(IsAdminAdvancedProcCall())
 		return
-	if(alert(usr, "Are you sure you want to reset the LOOC color of all players?", "Reset Player LOOC Color", "Yes", "No") != "Yes")
+	if(tgui_alert(usr, "Are you sure you want to reset the LOOC color of all players?", "Reset Player LOOC Color", list("Yes", "No")) != "Yes")
 		return
 	if(!check_rights(R_FUN))
 		message_admins("[usr.key] has attempted to use the Reset Player LOOC Color verb!")
@@ -354,38 +197,8 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 		return
 	message_admins("[key_name_admin(usr)] has reset the players' looc color.")
 	log_admin("[key_name_admin(usr)] has reset player looc color.")
-	GLOB.OOC_COLOR = null
+	GLOB.LOOC_COLOR = null
 
-/client/verb/colorlooc()
-	set name = "Set Your LOOC Color"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-	var/new_looccolor = input(src, "Please select your LOOC color.", "LOOC color", prefs.ooccolor) as color|null
-	if(isnull(new_looccolor))
-		return
-	new_looccolor = sanitize_looccolor(new_looccolor)
-	prefs.looccolor = new_looccolor
-	prefs.save_preferences()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Set LOOC Color") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/verb/resetcolorlooc()
-	set name = "Reset Your LOOC Color"
-	set desc = "Returns your LOOC Color to default"
-	set category = "Preferences"
-
-	if(!holder || !check_rights_for(src, R_ADMIN))
-		if(!is_content_unlocked())
-			return
-
-		prefs.looccolor = initial(prefs.ooccolor)
-		prefs.save_preferences()
-
-=======
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 //Checks admin notice
 /client/verb/admin_notice()
 	set name = "Adminnotice"
@@ -396,6 +209,127 @@ GLOBAL_VAR_INIT(normal_looc_colour, "#6699CC")
 		to_chat(src, "[span_boldnotice("Admin Notice:")]\n \t [GLOB.admin_notice]")
 	else
 		to_chat(src, span_notice("There are no admin notices at the moment."))
+
+/client/verb/looc(msg as text)
+	set name = "LOOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
+	set category = "OOC"
+
+	if(GLOB.say_disabled) //This is here to try to identify lag problems
+		to_chat(usr, span_danger("Speech is currently admin-disabled."))
+		return
+
+	if(!mob)
+		return
+
+	if(!holder)
+		if(!GLOB.looc_allowed)
+			to_chat(src, span_danger("LOOC is globally muted."))
+			return
+		if(!GLOB.dlooc_allowed && (mob.stat == DEAD))
+			to_chat(usr, span_danger("LOOC for dead mobs has been turned off."))
+			return
+		if(prefs.muted & MUTE_LOOC)
+			to_chat(src, span_danger("You cannot use LOOC (muted)."))
+			return
+	if(is_banned_from(ckey, "LOOC"))
+		to_chat(src, span_danger("You have been banned from LOOC."))
+		return
+	if(QDELETED(src))
+		return
+
+	msg = trim(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
+	var/raw_msg = msg
+
+	var/list/filter_result = is_looc_filtered(msg)
+	if (!CAN_BYPASS_FILTER(usr) && filter_result)
+		REPORT_CHAT_FILTER_TO_USER(usr, filter_result)
+		return
+
+	// Protect filter bypassers from themselves.
+	// Demote hard filter results to soft filter results if necessary due to the danger of accidentally speaking in OOC.
+	var/list/soft_filter_result = filter_result || is_soft_looc_filtered(msg)
+
+	if (soft_filter_result)
+		if(tgui_alert(usr,"Your message contains \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\". \"[soft_filter_result[CHAT_FILTER_INDEX_REASON]]\", Are you sure you want to say it?", "Soft Blocked Word", list("Yes", "No")) != "Yes")
+			return
+		message_admins("[ADMIN_LOOKUPFLW(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+		log_admin_private("[key_name(usr)] has passed the soft filter for \"[soft_filter_result[CHAT_FILTER_INDEX_WORD]]\" they may be using a disallowed term. Message: \"[msg]\"")
+
+	if(!msg)
+		return
+
+	msg = emoji_parse(msg)
+
+	if(SSticker.HasRoundStarted() && (msg[1] in list(".",";",":","#") || findtext_char(msg, "say", 1, 5)))
+		if(tgui_alert(usr,"Your message \"[raw_msg]\" looks like it was meant for in game communication, say it in LOOC?", "Meant for LOOC?", list("Yes", "No")) != "Yes")
+			return
+
+	if(!holder)
+		if(handle_spam_prevention(msg,MUTE_LOOC))
+			return
+		if(findtext(msg, "byond://"))
+			to_chat(src, span_boldannounce("<B>Advertising other servers is not allowed.</B>"))
+			log_admin("[key_name(src)] has attempted to advertise in LOOC: [msg]")
+			message_admins("[key_name_admin(src)] has attempted to advertise in LOOC: [msg]")
+			return
+
+	if(!(prefs.chat_toggles & CHAT_LOOC))
+		to_chat(src, span_danger("You have LOOC muted."))
+		return
+
+	mob.log_talk(raw_msg, LOG_LOOC)
+
+	var/keyname = key
+	if(prefs.unlock_content)
+		if(prefs.toggles & MEMBER_PUBLIC)
+			keyname = "<font color='[prefs.read_preference(/datum/preference/color/looc_color) || GLOB.normal_looc_colour]'>[icon2html('icons/ui_icons/chat/member_content.dmi', world, "blag")][keyname]</font>"
+	if(prefs.hearted)
+		var/datum/asset/spritesheet/sheet = get_asset_datum(/datum/asset/spritesheet/chat)
+		keyname = "[sheet.icon_tag("emoji-heart")][keyname]"
+	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
+	for(var/client/receiver as anything in GLOB.clients)
+		if(!receiver.prefs) // Client being created or deleted. Despite all, this can be null.
+			continue
+		if(!(receiver.prefs.chat_toggles & CHAT_LOOC))
+			continue
+		if(holder?.fakekey in receiver.prefs.ignoring)
+			continue
+		var/avoid_highlight = receiver == src
+		if(holder)
+			if(!holder.fakekey || receiver.holder)
+				if(check_rights_for(src, R_ADMIN))
+					var/looc_color = prefs.read_preference(/datum/preference/color/looc_color)
+					to_chat(receiver, span_adminooc("[CONFIG_GET(flag/allow_admin_looccolor) && looc_color ? "<font color=[looc_color]>" :"" ][span_prefix("LOOC:")] <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]</span>"), avoid_highlighting = avoid_highlight)
+				else
+					to_chat(receiver, span_adminobserverooc(span_prefix("LOOC:</span> <EM>[keyname][holder.fakekey ? "/([holder.fakekey])" : ""]:</EM> <span class='message linkify'>[msg]")), avoid_highlighting = avoid_highlight)
+			else
+				if(GLOB.LOOC_COLOR)
+					to_chat(receiver, "<span class='loocplain'><font color='[GLOB.LOOC_COLOR]'><b>[span_prefix("LOOC:")] <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+				else
+					to_chat(receiver, span_looc(span_prefix("LOOC:</span> <EM>[holder.fakekey ? holder.fakekey : key]:</EM> <span class='message linkify'>[msg]")), avoid_highlighting = avoid_highlight)
+
+		else if(!(key in receiver.prefs.ignoring))
+			if(GLOB.OOC_COLOR)
+				to_chat(receiver, "<span class='loocplain'><font color='[GLOB.LOOC_COLOR]'><b>[span_prefix("LOOC:")] <EM>[keyname]:</EM> <span class='message linkify'>[msg]</span></b></font></span>", avoid_highlighting = avoid_highlight)
+			else
+				to_chat(receiver, span_looc(span_prefix("LOOC:</span> <EM>[keyname]:</EM> <span class='message linkify'>[msg]")), avoid_highlighting = avoid_highlight)
+
+/proc/toggle_dlooc(toggle = null)
+	if(toggle != null)
+		if(toggle != GLOB.dlooc_allowed)
+			GLOB.dlooc_allowed = toggle
+		else
+			return
+	else
+		GLOB.dlooc_allowed = !GLOB.dlooc_allowed
+
+/mob/proc/get_looc_source()
+	return src
+
+/mob/living/silicon/ai/get_looc_source()
+	if(eyeobj)
+		return eyeobj
+	return src
 
 /proc/toggle_looc(toggle = null)
 	if(toggle != null) //if we're specifically en/disabling ooc

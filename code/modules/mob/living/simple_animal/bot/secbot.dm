@@ -305,21 +305,6 @@
 	var/threat = 5
 
 	if(harm)
-<<<<<<< HEAD
-		weapon.attack(C, src)
-	if(ishuman(C))
-		C.Jitter(20)
-		C.set_confusion(max(confusion_amt, C.get_confusion()))
-		C.stuttering = max(8, C.stuttering)
-		C.apply_damage(stamina_loss_amt, STAMINA, BODY_ZONE_CHEST)
-		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
-	else
-		C.Jitter(20)
-		C.set_confusion(max(confusion_amt, C.get_confusion()))
-		C.stuttering = max(8, C.stuttering)
-		C.apply_damage(stamina_loss_amt, STAMINA, BODY_ZONE_CHEST)
-		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
-=======
 		weapon.attack(current_target, src)
 	if(ishuman(current_target))
 		current_target.stuttering = 5
@@ -330,7 +315,6 @@
 		current_target.Paralyze(100)
 		current_target.stuttering = 5
 		threat = current_target.assess_threat(judgement_criteria, weaponcheck = CALLBACK(src, .proc/check_for_weapons))
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 
 	log_combat(src, target, "stunned")
 	if(security_mode_flags & SECBOT_DECLARE_ARRESTS)
@@ -384,11 +368,7 @@
 
 		if(BOT_PREP_ARREST) // preparing to arrest target
 			// see if he got away. If he's no no longer adjacent or inside a closet or about to get up, we hunt again.
-<<<<<<< HEAD
-			if( !Adjacent(target) || !isturf(target.loc))
-=======
 			if(!Adjacent(target) || !isturf(target.loc) || !HAS_TRAIT(target, TRAIT_FLOORED))
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 				back_to_hunt()
 				return
 
@@ -418,11 +398,7 @@
 				back_to_idle()
 				return
 
-<<<<<<< HEAD
-			if(!Adjacent(target) || !isturf(target.loc)) //if he's changed loc and about to get up or not adjacent or got into a closet, we prep arrest again.
-=======
 			if(!Adjacent(target) || !isturf(target.loc) || (target.loc != target_lastloc && !HAS_TRAIT(target, TRAIT_FLOORED))) //if he's changed loc and about to get up or not adjacent or got into a closet, we prep arrest again.
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 				back_to_hunt()
 				return
 			else //Try arresting again if the target escapes.

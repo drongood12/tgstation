@@ -6,14 +6,8 @@
 
 	//Add client links
 	var/list/dat = list()
-<<<<<<< HEAD
-	if(M.client)
-		dat += "<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'>"
-		dat += "<center><p>Client</p></center>"
-=======
 	if(M.ckey)
 		dat += "<center><p>Ckey</p></center>"
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 		dat += "<center>"
 		dat += individual_logging_panel_link(M, INDIVIDUAL_ATTACK_LOG, LOGSRC_CKEY, "Attack Log", source, ntype)
 		dat += " | "

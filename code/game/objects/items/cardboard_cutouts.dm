@@ -115,13 +115,8 @@
 	if(!deceptive)
 		add_atom_colour("#FFD7A7", FIXED_COLOUR_PRIORITY)
 	switch(new_appearance)
-<<<<<<< HEAD
-		if("Assistant")
-			name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names_male)]"
-=======
 		if(JOB_ASSISTANT)
 			name = "[pick(GLOB.first_names_male)] [pick(GLOB.last_names)]"
->>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 			desc = "A cardboat cutout of an assistant."
 			icon_state = "cutout_greytide"
 		if("Clown")
