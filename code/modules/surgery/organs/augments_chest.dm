@@ -21,7 +21,7 @@
 
 	if(owner.nutrition <= hunger_threshold)
 		synthesizing = TRUE
-		to_chat(owner, "<span class='notice'>You feel less hungry...</span>")
+		to_chat(owner, span_notice("You feel less hungry..."))
 		owner.adjust_nutrition(25 * delta_time)
 		addtimer(CALLBACK(src, .proc/synth_cool), 50)
 
@@ -33,7 +33,7 @@
 	if(!owner || . & EMP_PROTECT_SELF)
 		return
 	owner.reagents.add_reagent(/datum/reagent/toxin/bad_food, poison_amount / severity)
-	to_chat(owner, "<span class='warning'>You feel like your insides are burning.</span>")
+	to_chat(owner, span_warning("You feel like your insides are burning."))
 
 
 /obj/item/organ/cyberimp/chest/nutriment/plus
@@ -63,7 +63,7 @@
 			else
 				COOLDOWN_START(src, reviver_cooldown, revive_cost)
 				reviving = FALSE
-				to_chat(owner, "<span class='notice'>Your reviver implant shuts down and starts recharging. It will be ready again in [DisplayTimeText(revive_cost)].</span>")
+				to_chat(owner, span_notice("Your reviver implant shuts down and starts recharging. It will be ready again in [DisplayTimeText(revive_cost)]."))
 		return
 
 	if(!COOLDOWN_FINISHED(src, reviver_cooldown) || owner.suiciding)
@@ -73,7 +73,7 @@
 		if(UNCONSCIOUS, HARD_CRIT)
 			revive_cost = 0
 			reviving = TRUE
-			to_chat(owner, "<span class='notice'>You feel a faint buzzing as your reviver implant starts patching your wounds...</span>")
+			to_chat(owner, span_notice("You feel a faint buzzing as your reviver implant starts patching your wounds..."))
 
 
 /obj/item/organ/cyberimp/chest/reviver/proc/heal()
@@ -104,7 +104,7 @@
 		var/mob/living/carbon/human/human_owner = owner
 		if(human_owner.stat != DEAD && prob(50 / severity) && human_owner.can_heartattack())
 			human_owner.set_heartattack(TRUE)
-			to_chat(human_owner, "<span class='userdanger'>You feel a horrible agony in your chest!</span>")
+			to_chat(human_owner, span_userdanger("You feel a horrible agony in your chest!"))
 			addtimer(CALLBACK(src, .proc/undo_heart_attack), 600 / severity)
 
 /obj/item/organ/cyberimp/chest/reviver/proc/undo_heart_attack()
@@ -113,7 +113,7 @@
 		return
 	human_owner.set_heartattack(FALSE)
 	if(human_owner.stat == CONSCIOUS)
-		to_chat(human_owner, "<span class='notice'>You feel your heart beating again!</span>")
+		to_chat(human_owner, span_notice("You feel your heart beating again!"))
 
 
 /obj/item/organ/cyberimp/chest/thrusters
@@ -149,23 +149,25 @@
 	if(!on)
 		if((organ_flags & ORGAN_FAILING))
 			if(!silent)
-				to_chat(owner, "<span class='warning'>Your thrusters set seems to be broken!</span>")
+				to_chat(owner, span_warning("Your thrusters set seems to be broken!"))
 			return FALSE
 		if(allow_thrust(0.01))
 			on = TRUE
 			ion_trail.start()
 			RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/move_react)
-			owner.add_movespeed_modifier(/datum/movespeed_modifier/jetpack/cybernetic)
 			RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/pre_move_react)
+			RegisterSignal(owner, COMSIG_MOVABLE_SPACEMOVE, .proc/spacemove_react)
+			owner.add_movespeed_modifier(/datum/movespeed_modifier/jetpack/cybernetic)
 			if(!silent)
-				to_chat(owner, "<span class='notice'>You turn your thrusters set on.</span>")
+				to_chat(owner, span_notice("You turn your thrusters set on."))
 	else
 		ion_trail.stop()
 		UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-		owner.remove_movespeed_modifier(/datum/movespeed_modifier/jetpack/cybernetic)
 		UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+		UnregisterSignal(owner, COMSIG_MOVABLE_SPACEMOVE)
+		owner.remove_movespeed_modifier(/datum/movespeed_modifier/jetpack/cybernetic)
 		if(!silent)
-			to_chat(owner, "<span class='notice'>You turn your thrusters set off.</span>")
+			to_chat(owner, span_notice("You turn your thrusters set off."))
 		on = FALSE
 	update_appearance()
 
@@ -193,6 +195,12 @@
 /obj/item/organ/cyberimp/chest/thrusters/proc/pre_move_react()
 	SIGNAL_HANDLER
 	ion_trail.oldposition = get_turf(owner)
+
+/obj/item/organ/cyberimp/chest/thrusters/proc/spacemove_react(mob/user, movement_dir)
+	SIGNAL_HANDLER
+
+	if(on && movement_dir)
+		return COMSIG_MOVABLE_STOP_SPACEMOVE
 
 /obj/item/organ/cyberimp/chest/thrusters/proc/allow_thrust(num)
 	if(!owner)

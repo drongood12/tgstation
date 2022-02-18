@@ -58,6 +58,8 @@
 	var/damage_mulitplier_penalty = 1
 	/// If set and this wound is applied to a leg, we take this many deciseconds extra per step on this leg
 	var/limp_slowdown
+	/// If this wound has a limp_slowdown and is applied to a leg, it has this chance to limp each step
+	var/limp_chance
 	/// How much we're contributing to this limb's bleed_rate
 	var/blood_flow
 
@@ -105,8 +107,9 @@
  * * silent: Not actually necessary I don't think, was originally used for demoting wounds so they wouldn't make new messages, but I believe old_wound took over that, I may remove this shortly
  * * old_wound: If our new wound is a replacement for one of the same time (promotion or demotion), we can reference the old one just before it's removed to copy over necessary vars
  * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
+ * * attack_direction: For bloodsplatters, if relevant
  */
-/datum/wound/proc/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE)
+/datum/wound/proc/apply_wound(obj/item/bodypart/L, silent = FALSE, datum/wound/old_wound = null, smited = FALSE, attack_direction = null)
 	if(!istype(L) || !L.owner || !(L.body_zone in viable_zones) || !L.is_organic_limb() || HAS_TRAIT(L.owner, TRAIT_NEVER_WOUNDED))
 		qdel(src)
 		return
@@ -144,19 +147,19 @@
 		return
 
 	if(!(silent || demoted))
-		var/msg = "<span class='danger'>[victim]'s [limb.name] [occur_text]!</span>"
+		var/msg = span_danger("[victim]'s [limb.name] [occur_text]!")
 		var/vis_dist = COMBAT_MESSAGE_RANGE
 
 		if(severity != WOUND_SEVERITY_MODERATE)
 			msg = "<b>[msg]</b>"
 			vis_dist = DEFAULT_MESSAGE_RANGE
 
-		victim.visible_message(msg, "<span class='userdanger'>Your [limb.name] [occur_text]!</span>", vision_distance = vis_dist)
+		victim.visible_message(msg, span_userdanger("Your [limb.name] [occur_text]!"), vision_distance = vis_dist)
 		if(sound_effect)
 			playsound(L.owner, sound_effect, 70 + 20 * severity, TRUE)
 
 	if(!demoted)
-		wound_injury(old_wound)
+		wound_injury(old_wound, attack_direction = attack_direction)
 		second_wind()
 
 /datum/wound/proc/null_victim()
@@ -205,16 +208,16 @@
  * * new_type- The TYPE PATH of the wound you want to replace this, like /datum/wound/slash/severe
  * * smited- If this is a smite, we don't care about this wound for stat tracking purposes (not yet implemented)
  */
-/datum/wound/proc/replace_wound(new_type, smited = FALSE)
+/datum/wound/proc/replace_wound(new_type, smited = FALSE, attack_direction = attack_direction)
 	var/datum/wound/new_wound = new new_type
 	already_scarred = TRUE
 	remove_wound(replaced=TRUE)
-	new_wound.apply_wound(limb, old_wound = src, smited = smited)
+	new_wound.apply_wound(limb, old_wound = src, smited = smited, attack_direction = attack_direction)
 	. = new_wound
 	qdel(src)
 
 /// The immediate negative effects faced as a result of the wound
-/datum/wound/proc/wound_injury(datum/wound/old_wound = null)
+/datum/wound/proc/wound_injury(datum/wound/old_wound = null, attack_direction = null)
 	return
 
 
@@ -309,7 +312,7 @@
 
 	// now that we've determined we have a valid attempt at treating, we can stomp on their dreams if we're already interacting with the patient or if their part is obscured
 	if(DOING_INTERACTION_WITH_TARGET(user, victim))
-		to_chat(user, "<span class='warning'>You're already interacting with [victim]!</span>")
+		to_chat(user, span_warning("You're already interacting with [victim]!"))
 		return TRUE
 
 	// next we check if the bodypart in actually accessible (not under thick clothing). We skip the species trait check since skellies
@@ -344,7 +347,7 @@
 	return (!QDELETED(src) && limb)
 
 /// When our parent bodypart is hurt
-/datum/wound/proc/receive_damage(wounding_type, wounding_dmg, wound_bonus)
+/datum/wound/proc/receive_damage(wounding_type, wounding_dmg, wound_bonus, attack_direction)
 	return
 
 /// Called from cryoxadone and pyroxadone when they're proc'ing. Wounds will slowly be fixed separately from other methods when these are in effect. crappy name but eh

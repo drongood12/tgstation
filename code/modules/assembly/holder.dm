@@ -14,10 +14,21 @@
 	var/obj/item/assembly/a_left = null
 	var/obj/item/assembly/a_right = null
 
-/obj/item/assembly_holder/ComponentInitialize()
+/obj/item/assembly_holder/Initialize(mapload)
 	. = ..()
-	var/static/rotation_flags = ROTATION_ALTCLICK | ROTATION_CLOCKWISE | ROTATION_COUNTERCLOCKWISE | ROTATION_FLIP | ROTATION_VERBS
-	AddComponent(/datum/component/simple_rotation, rotation_flags)
+	AddComponent(/datum/component/simple_rotation)
+
+/obj/item/assembly_holder/Destroy()
+	QDEL_NULL(a_left)
+	QDEL_NULL(a_right)
+	return ..()
+
+/obj/item/assembly_holder/Exited(atom/movable/gone, direction)
+	. = ..()
+	if(gone == a_left)
+		a_left = null
+	else if(gone == a_right)
+		a_right = null
 
 /obj/item/assembly_holder/IsAssemblyHolder()
 	return TRUE
@@ -103,7 +114,7 @@
 /obj/item/assembly_holder/screwdriver_act(mob/user, obj/item/tool)
 	if(..())
 		return TRUE
-	to_chat(user, "<span class='notice'>You disassemble [src]!</span>")
+	to_chat(user, span_notice("You disassemble [src]!"))
 	if(a_left)
 		a_left.on_detach()
 		a_left = null
@@ -116,7 +127,7 @@
 /obj/item/assembly_holder/attack_self(mob/user)
 	src.add_fingerprint(user)
 	if(!a_left || !a_right)
-		to_chat(user, "<span class='danger'>Assembly part missing!</span>")
+		to_chat(user, span_danger("Assembly part missing!"))
 		return
 	if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
 		switch(tgui_alert(usr,"Which side would you like to use?",,list("Left","Right")))

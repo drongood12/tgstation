@@ -100,7 +100,7 @@
 /datum/browser/proc/open(use_onclose = TRUE)
 	if(isnull(window_id)) //null check because this can potentially nuke goonchat
 		WARNING("Browser [title] tried to open with a null ID")
-		to_chat(user, "<span class='userdanger'>The [title] browser you tried to open failed a sanity check! Please report this on github!</span>")
+		to_chat(user, span_userdanger("The [title] browser you tried to open failed a sanity check! Please report this on github!"))
 		return
 	var/window_size = ""
 	if (width && height)
@@ -136,7 +136,7 @@
 	if (!User)
 		return
 
-	var/output =  {"<center><b>[Message]</b></center><br />
+	var/output = {"<center><b>[Message]</b></center><br />
 		<div style="text-align:center">
 		<a style="font-size:large;float:[( Button2 ? "left" : "right" )]" href="?src=[REF(src)];button=1">[Button1]</a>"}
 
@@ -249,7 +249,7 @@
 	if (!User)
 		return
 
-	var/output =  {"<form><input type="hidden" name="src" value="[REF(src)]"><ul class="sparse">"}
+	var/output = {"<form><input type="hidden" name="src" value="[REF(src)]"><ul class="sparse">"}
 	if (inputtype == "checkbox" || inputtype == "radio")
 		for (var/i in values)
 			var/div_slider = slidecolor

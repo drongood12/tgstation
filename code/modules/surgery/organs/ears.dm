@@ -4,6 +4,7 @@
 	desc = "There are three parts to the ear. Inner, middle and outer. Only one of these parts should be normally visible."
 	zone = BODY_ZONE_HEAD
 	slot = ORGAN_SLOT_EARS
+	visual = FALSE
 	gender = PLURAL
 
 	healing_factor = STANDARD_ORGAN_HEALING
@@ -30,15 +31,12 @@
 /obj/item/organ/ears/on_life(delta_time, times_fired)
 	// only inform when things got worse, needs to happen before we heal
 	if((damage > low_threshold && prev_damage < low_threshold) || (damage > high_threshold && prev_damage < high_threshold))
-		to_chat(owner, "<span class='warning'>The ringing in your ears grows louder, blocking out any external noises for a moment.</span>")
+		to_chat(owner, span_warning("The ringing in your ears grows louder, blocking out any external noises for a moment."))
 
 	. = ..()
 	// if we have non-damage related deafness like mutations, quirks or clothing (earmuffs), don't bother processing here. Ear healing from earmuffs or chems happen elsewhere
 	if(HAS_TRAIT_NOT_FROM(owner, TRAIT_DEAF, EAR_DAMAGE))
 		return
-
-	if((damage < maxHealth) && (organ_flags & ORGAN_FAILING)) //ear damage can be repaired from the failing condition
-		organ_flags &= ~ORGAN_FAILING
 
 	if((organ_flags & ORGAN_FAILING))
 		deaf = max(deaf, 1) // if we're failing we always have at least 1 deaf stack (and thus deafness)
@@ -54,6 +52,8 @@
 		REMOVE_TRAIT(owner, TRAIT_DEAF, EAR_DAMAGE)
 
 /obj/item/organ/ears/proc/adjustEarDamage(ddmg, ddeaf)
+	if(owner.status_flags & GODMODE)
+		return
 	damage = max(damage + (ddmg*damage_multiplier), 0)
 	deaf = max(deaf + (ddeaf*damage_multiplier), 0)
 
@@ -64,6 +64,7 @@
 	name = "cat ears"
 	icon = 'icons/obj/clothing/hats.dmi'
 	icon_state = "kitty"
+	visual = TRUE
 	damage_multiplier = 2
 
 /obj/item/organ/ears/cat/Insert(mob/living/carbon/human/ear_owner, special = 0, drop_if_replaced = TRUE)
@@ -71,13 +72,13 @@
 	if(istype(ear_owner))
 		color = ear_owner.hair_color
 		ear_owner.dna.features["ears"] = ear_owner.dna.species.mutant_bodyparts["ears"] = "Cat"
+		ear_owner.dna.update_uf_block(DNA_EARS_BLOCK)
 		ear_owner.update_body()
 
 /obj/item/organ/ears/cat/Remove(mob/living/carbon/human/ear_owner,  special = 0)
 	..()
 	if(istype(ear_owner))
 		color = ear_owner.hair_color
-		ear_owner.dna.features["ears"] = "None"
 		ear_owner.dna.species.mutant_bodyparts -= "ears"
 		ear_owner.update_body()
 
@@ -88,13 +89,13 @@
 /obj/item/organ/ears/penguin/Insert(mob/living/carbon/human/ear_owner, special = 0, drop_if_replaced = TRUE)
 	. = ..()
 	if(istype(ear_owner))
-		to_chat(ear_owner, "<span class='notice'>You suddenly feel like you've lost your balance.</span>")
+		to_chat(ear_owner, span_notice("You suddenly feel like you've lost your balance."))
 		ear_owner.AddElement(/datum/element/waddling)
 
 /obj/item/organ/ears/penguin/Remove(mob/living/carbon/human/ear_owner,  special = 0)
 	. = ..()
 	if(istype(ear_owner))
-		to_chat(ear_owner, "<span class='notice'>Your sense of balance comes back to you.</span>")
+		to_chat(ear_owner, span_notice("Your sense of balance comes back to you."))
 		ear_owner.RemoveElement(/datum/element/waddling)
 
 /obj/item/organ/ears/bronze

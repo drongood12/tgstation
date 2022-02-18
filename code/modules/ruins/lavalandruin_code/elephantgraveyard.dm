@@ -5,6 +5,7 @@
 	max_integrity = 120
 	impressiveness = 18 // Carved from the bones of a massive creature, it's going to be a specticle to say the least
 	layer = ABOVE_ALL_MOB_LAYER
+	plane = ABOVE_GAME_PLANE
 	custom_materials = list(/datum/material/bone=MINERAL_MATERIAL_AMOUNT*5)
 	abstract_type = /obj/structure/statue/bone
 
@@ -43,7 +44,7 @@
 /turf/open/floor/plating/asteroid/basalt/wasteland/setup_broken_states()
 	return list("wasteland")
 
-/turf/open/floor/plating/asteroid/basalt/wasteland/Initialize()
+/turf/open/floor/plating/asteroid/basalt/wasteland/Initialize(mapload)
 	.=..()
 	if(prob(floor_variance))
 		icon_state = "[base_icon_state][rand(0,6)]"
@@ -74,7 +75,7 @@
 	icon_state = "puddle-oil"
 	dispensedreagent = /datum/reagent/fuel/oil
 
-/obj/structure/sink/oil_well/Initialize()
+/obj/structure/sink/oil_well/Initialize(mapload)
 	.=..()
 	create_reagents(20)
 	reagents.add_reagent(dispensedreagent, 20)
@@ -82,7 +83,7 @@
 /obj/structure/sink/oil_well/attack_hand(mob/user, list/modifiers)
 	flick("puddle-oil-splash",src)
 	reagents.expose(user, TOUCH, 20) //Covers target in 20u of oil.
-	to_chat(user, "<span class='notice'>You touch the pool of oil, only to get oil all over yourself. It would be wise to wash this off with water.</span>")
+	to_chat(user, span_notice("You touch the pool of oil, only to get oil all over yourself. It would be wise to wash this off with water."))
 
 /obj/structure/sink/oil_well/attackby(obj/item/O, mob/living/user, params)
 	flick("puddle-oil-splash",src)
@@ -96,12 +97,12 @@
 		if(RG.is_refillable())
 			if(!RG.reagents.holder_full())
 				RG.reagents.add_reagent(dispensedreagent, min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-				to_chat(user, "<span class='notice'>You fill [RG] from [src].</span>")
+				to_chat(user, span_notice("You fill [RG] from [src]."))
 				return TRUE
-			to_chat(user, "<span class='notice'>\The [RG] is full.</span>")
+			to_chat(user, span_notice("\The [RG] is full."))
 			return FALSE
 	if(!user.combat_mode)
-		to_chat(user, "<span class='notice'>You won't have any luck getting \the [O] out if you drop it in the oil.</span>")
+		to_chat(user, span_notice("You won't have any luck getting \the [O] out if you drop it in the oil."))
 		return 1
 	else
 		return ..()
@@ -122,12 +123,14 @@
 	anchorable = FALSE
 	anchored = TRUE
 	locked = TRUE
-	breakout_time = 900
+	divable = FALSE //As funny as it may be, it would make little sense how you got yourself inside it in first place.
+	breakout_time = 90 SECONDS
 	open_sound = 'sound/effects/shovel_dig.ogg'
 	close_sound = 'sound/effects/shovel_dig.ogg'
 	cutting_tool = /obj/item/shovel
 	var/lead_tomb = FALSE
 	var/first_open = FALSE
+	can_install_electronics = FALSE
 
 /obj/structure/closet/crate/grave/filled/PopulateContents()  //GRAVEROBBING IS NOW A FEATURE
 	..()
@@ -154,18 +157,24 @@
 		if(7)
 			new /obj/item/clothing/glasses/sunglasses(src)
 			new /obj/item/clothing/mask/cigarette/rollie(src)
+		else
+			//empty grave
+			return
 
 /obj/structure/closet/crate/grave/open(mob/living/user, obj/item/S, force = FALSE)
 	if(!opened)
-		to_chat(user, "<span class='notice'>The ground here is too hard to dig up with your bare hands. You'll need a shovel.</span>")
+		to_chat(user, span_notice("The ground here is too hard to dig up with your bare hands. You'll need a shovel."))
 	else
-		to_chat(user, "<span class='notice'>The grave has already been dug up.</span>")
+		to_chat(user, span_notice("The grave has already been dug up."))
+
+/obj/structure/closet/crate/grave/closet_update_overlays(list/new_overlays)
+	return
 
 /obj/structure/closet/crate/grave/tool_interact(obj/item/S, mob/living/carbon/user)
 	if(!user.combat_mode) //checks to attempt to dig the grave, must be done with combat mode off only.
 		if(!opened)
 			if(istype(S,cutting_tool) && S.tool_behaviour == TOOL_SHOVEL)
-				to_chat(user, "<span class='notice'>You start start to dig open \the [src]  with \the [S]...</span>")
+				to_chat(user, span_notice("You start start to dig open \the [src]  with \the [S]..."))
 				if (do_after(user,20, target = src))
 					opened = TRUE
 					locked = TRUE
@@ -174,22 +183,22 @@
 					SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "graverobbing", /datum/mood_event/graverobbing)
 					if(lead_tomb == TRUE && first_open == TRUE)
 						user.gain_trauma(/datum/brain_trauma/magic/stalker)
-						to_chat(user, "<span class='boldwarning'>Oh no, no no no, THEY'RE EVERYWHERE! EVERY ONE OF THEM IS EVERYWHERE!</span>")
+						to_chat(user, span_boldwarning("Oh no, no no no, THEY'RE EVERYWHERE! EVERY ONE OF THEM IS EVERYWHERE!"))
 						first_open = FALSE
 					return 1
 				return 1
 			else
-				to_chat(user, "<span class='notice'>You can't dig up a grave with \the [S.name].</span>")
+				to_chat(user, span_notice("You can't dig up a grave with \the [S.name]."))
 				return 1
 		else
-			to_chat(user, "<span class='notice'>The grave has already been dug up.</span>")
+			to_chat(user, span_notice("The grave has already been dug up."))
 			return 1
 
 	else if((user.combat_mode) && opened) //checks to attempt to remove the grave entirely.
 		if(istype(S,cutting_tool) && S.tool_behaviour == TOOL_SHOVEL)
-			to_chat(user, "<span class='notice'>You start to remove \the [src]  with \the [S].</span>")
+			to_chat(user, span_notice("You start to remove \the [src]  with \the [S]."))
 			if (do_after(user,15, target = src))
-				to_chat(user, "<span class='notice'>You remove \the [src]  completely.</span>")
+				to_chat(user, span_notice("You remove \the [src]  completely."))
 				SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "graverobbing", /datum/mood_event/graverobbing)
 				deconstruct(TRUE)
 				return 1

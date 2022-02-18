@@ -9,14 +9,18 @@
 
 	for (var/obj/machinery/camera/C in L)
 		var/list/tempnetwork = C.network&src.network
-		if (tempnetwork.len)
+		if (length(tempnetwork))
 			T[text("[][]", C.c_tag, (C.can_use() ? null : " (Deactivated)"))] = C
 
 	return T
 
 /mob/living/silicon/ai/proc/show_camera_list()
 	var/list/cameras = get_camera_list()
-	var/camera = input(src, "Choose which camera you want to view", "Cameras") as null|anything in cameras
+	var/camera = tgui_input_list(src, "Choose which camera you want to view", "Cameras", cameras)
+	if(isnull(camera))
+		return
+	if(isnull(cameras[camera]))
+		return
 	switchCamera(cameras[camera])
 
 /datum/trackable
@@ -53,7 +57,7 @@
 		else
 			track.others[name] = WEAKREF(L)
 
-	var/list/targets = sortList(track.humans) + sortList(track.others)
+	var/list/targets = sort_list(track.humans) + sort_list(track.others)
 
 	return targets
 
@@ -80,11 +84,11 @@
 	U.tracking = 1
 
 	if(!target || !target.can_track(usr))
-		to_chat(U, "<span class='warning'>Target is not near any active cameras.</span>")
+		to_chat(U, span_warning("Target is not near any active cameras."))
 		U.cameraFollow = null
 		return
 
-	to_chat(U, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	to_chat(U, span_notice("Now tracking [target.get_visible_name()] on camera."))
 
 	INVOKE_ASYNC(src, .proc/do_track, target, U)
 
@@ -98,11 +102,11 @@
 		if(!target.can_track(usr))
 			U.tracking = TRUE
 			if(!cameraticks)
-				to_chat(U, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+				to_chat(U, span_warning("Target is not near any active cameras. Attempting to reacquire..."))
 			cameraticks++
 			if(cameraticks > 9)
 				U.cameraFollow = null
-				to_chat(U, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+				to_chat(U, span_warning("Unable to reacquire, cancelling track..."))
 				tracking = FALSE
 				return
 			else
@@ -145,7 +149,7 @@
 	var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 
-	for (var/i = L.len, i > 0, i--)
+	for (var/i = length(L), i > 0, i--)
 		for (var/j = 1 to i - 1)
 			a = L[j]
 			b = L[j + 1]

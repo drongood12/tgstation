@@ -193,18 +193,19 @@ GLOBAL_LIST_EMPTY(allCasters)
 	icon_state = "newscaster"
 	custom_materials = list(/datum/material/iron=14000, /datum/material/glass=8000)
 	result_path = /obj/machinery/newscaster
+	pixel_shift = 30
 
 
 /obj/machinery/newscaster
 	name = "newscaster"
 	desc = "A standard Nanotrasen-licensed newsfeed handler for use in commercial space stations. All the news you absolutely have no use for, in one place!"
 	icon = 'icons/obj/terminals.dmi'
-	icon_state = "newscaster_normal"
+	icon_state = "newscaster_off"
 	base_icon_state = "newscaster"
 	verb_say = "beeps"
 	verb_ask = "beeps"
 	verb_exclaim = "beeps"
-	armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 50, ACID = 30)
+	armor = list(MELEE = 50, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, FIRE = 50, ACID = 30)
 	max_integrity = 200
 	integrity_failure = 0.25
 	var/screen = 0
@@ -221,40 +222,16 @@ GLOBAL_LIST_EMPTY(allCasters)
 	var/datum/newscaster/feed_channel/viewing_channel = null
 	var/allow_comments = 1
 
-/obj/machinery/newscaster/directional/north
-	pixel_y = 32
-
-/obj/machinery/newscaster/directional/south
-	pixel_y = -28
-
-/obj/machinery/newscaster/directional/east
-	pixel_x = 28
-
-/obj/machinery/newscaster/directional/west
-	pixel_x = -28
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster, 30)
 
 /obj/machinery/newscaster/security_unit
 	name = "security newscaster"
 	securityCaster = 1
 
-/obj/machinery/newscaster/security_unit/directional/north
-	pixel_y = 32
-
-/obj/machinery/newscaster/security_unit/directional/south
-	pixel_y = -28
-
-/obj/machinery/newscaster/security_unit/directional/east
-	pixel_x = 28
-
-/obj/machinery/newscaster/security_unit/directional/west
-	pixel_x = -28
+MAPPING_DIRECTIONAL_HELPERS(/obj/machinery/newscaster/security_unit, 30)
 
 /obj/machinery/newscaster/Initialize(mapload, ndir, building)
 	. = ..()
-	if(building)
-		setDir(ndir)
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -32 : 32)
-		pixel_y = (dir & 3)? (dir ==1 ? -32 : 32) : 0
 
 	GLOB.allCasters += src
 	unit_no = GLOB.allCasters.len
@@ -266,29 +243,38 @@ GLOBAL_LIST_EMPTY(allCasters)
 	picture = null
 	return ..()
 
-/obj/machinery/newscaster/update_icon_state()
+/obj/machinery/newscaster/update_appearance(updates=ALL)
+	. = ..()
 	if(machine_stat & (NOPOWER|BROKEN))
-		icon_state = "[base_icon_state]_off"
-		return ..()
-	icon_state = "[base_icon_state]_[GLOB.news_network.wanted_issue.active ? "wanted" : "normal"]"
-	return ..()
+		set_light(0)
+		return
+	set_light(1.4,0.7,"#34D352") // green light
 
 /obj/machinery/newscaster/update_overlays()
 	. = ..()
 
-	if(!(machine_stat & (NOPOWER|BROKEN)) && !GLOB.news_network.wanted_issue.active && alert)
-		. += "newscaster_alert"
+	if(!(machine_stat & (NOPOWER|BROKEN)))
+		var/state = "[base_icon_state]_[GLOB.news_network.wanted_issue.active ? "wanted" : "normal"]"
+		. += mutable_appearance(icon, state)
+		. += emissive_appearance(icon, state, alpha = src.alpha)
 
-	var/hp_percent = obj_integrity * 100 /max_integrity
+		if(!GLOB.news_network.wanted_issue.active && alert)
+			. += mutable_appearance(icon, "[base_icon_state]_alert")
+			. += emissive_appearance(icon, "[base_icon_state]_alert", alpha = src.alpha)
+
+	var/hp_percent = atom_integrity * 100 /max_integrity
 	switch(hp_percent)
 		if(75 to 100)
 			return
 		if(50 to 75)
 			. += "crack1"
+			. += emissive_blocker(icon, "crack1", alpha = src.alpha)
 		if(25 to 50)
 			. += "crack2"
+			. += emissive_blocker(icon, "crack2", alpha = src.alpha)
 		else
 			. += "crack3"
+			. += emissive_blocker(icon, "crack3", alpha = src.alpha)
 
 /obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
 	. = ..()
@@ -457,7 +443,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 				else
 					for(var/datum/newscaster/feed_message/MESSAGE in viewing_channel.messages)
 						dat+="-[MESSAGE.returnBody(-1)] <BR><FONT SIZE=1>\[Story by <FONT COLOR='maroon'>[MESSAGE.returnAuthor(-1)]</FONT>\]</FONT><BR>"
-						dat+="<FONT SIZE=2><A href='?src=[REF(src)];censor_channel_story_body=[REF(MESSAGE)]'>[(MESSAGE.bodyCensor) ? ("Undo story censorship") : ("Censor story")]</A>  -  <A href='?src=[REF(src)];censor_channel_story_author=[REF(MESSAGE)]'>[(MESSAGE.authorCensor) ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>"
+						dat+="<FONT SIZE=2><A href='?src=[REF(src)];censor_channel_story_body=[REF(MESSAGE)]'>[(MESSAGE.bodyCensor) ? ("Undo story censorship") : ("Censor story")]</A> - <A href='?src=[REF(src)];censor_channel_story_author=[REF(MESSAGE)]'>[(MESSAGE.authorCensor) ? ("Undo Author Censorship") : ("Censor message Author")]</A></FONT><BR>"
 						dat+="[MESSAGE.comments.len] comment[MESSAGE.comments.len > 1 ? "s" : ""]: <a href='?src=[REF(src)];lock_comment=[REF(MESSAGE)]'>[MESSAGE.locked ? "Unlock" : "Lock"]</a><br>"
 						for(var/datum/newscaster/feed_comment/comment in MESSAGE.comments)
 							dat+="[comment.body] <a href='?src=[REF(src)];del_comment=[REF(comment)];del_comment_msg=[REF(MESSAGE)]'>X</a><br><font size=1>[comment.author] [comment.time_stamp]</font><br>"
@@ -545,7 +531,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		usr.set_machine(src)
 		scan_user(usr)
 		if(href_list["set_channel_name"])
-			channel_name = stripped_input(usr, "Provide a Feed Channel Name", "Network Channel Handler", "", MAX_NAME_LEN)
+			channel_name = tgui_input_text(usr, "Provide a Feed Channel Name", "Network Channel Handler", max_length = MAX_NAME_LEN)
 			updateUsrDialog()
 		else if(href_list["set_channel_lock"])
 			c_locked = !c_locked
@@ -577,10 +563,13 @@ GLOBAL_LIST_EMPTY(allCasters)
 			for(var/datum/newscaster/feed_channel/F in GLOB.news_network.network_channels)
 				if( (!F.locked || F.author == scanned_user) && !F.censored)
 					available_channels += F.channel_name
-			channel_name = input(usr, "Choose receiving Feed Channel", "Network Channel Handler") in sortList(available_channels)
+			var/channel_choice = tgui_input_list(usr, "Choose receiving Feed Channel", "Network Channel Handler", sort_list(available_channels))
+			if(isnull(channel_choice))
+				return
+			channel_name = channel_choice
 			updateUsrDialog()
 		else if(href_list["set_new_message"])
-			var/temp_message = trim(stripped_multiline_input(usr, "Write your Feed story", "Network Channel Handler", msg))
+			var/temp_message = tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", msg, multiline = TRUE)
 			if(temp_message)
 				msg = temp_message
 				updateUsrDialog()
@@ -625,10 +614,10 @@ GLOBAL_LIST_EMPTY(allCasters)
 			screen = 14
 			updateUsrDialog()
 		else if(href_list["set_wanted_name"])
-			channel_name = stripped_input(usr, "Provide the name of the Wanted person", "Network Security Handler")
+			channel_name = tgui_input_text(usr, "Provide the name of the wanted person", "Network Security Handler", max_length = MAX_NAME_LEN)
 			updateUsrDialog()
 		else if(href_list["set_wanted_desc"])
-			msg = stripped_input(usr, "Provide a description of the Wanted person and any other details you deem important", "Network Security Handler")
+			msg = tgui_input_text(usr, "Provide a description of the wanted person and any other details you deem important", "Network Security Handler", multiline = TRUE)
 			updateUsrDialog()
 		else if(href_list["submit_wanted"])
 			var/input_param = text2num(href_list["submit_wanted"])
@@ -717,7 +706,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 			updateUsrDialog()
 		else if(href_list["new_comment"])
 			var/datum/newscaster/feed_message/FM = locate(href_list["new_comment"]) in viewing_channel.messages
-			var/cominput = stripped_input(usr, "Write your message:", "New comment", null, 140)
+			var/cominput = tgui_input_text(usr, "Write your message", "New comment", max_length = 140, multiline = TRUE)
 			if(cominput)
 				scan_user(usr)
 				var/datum/newscaster/feed_comment/FC = new/datum/newscaster/feed_comment
@@ -746,35 +735,35 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 /obj/machinery/newscaster/attackby(obj/item/I, mob/living/user, params)
 	if(I.tool_behaviour == TOOL_WRENCH)
-		to_chat(user, "<span class='notice'>You start [anchored ? "un" : ""]securing [name]...</span>")
+		to_chat(user, span_notice("You start [anchored ? "un" : ""]securing [name]..."))
 		I.play_tool_sound(src)
 		if(I.use_tool(src, user, 60))
 			playsound(loc, 'sound/items/deconstruct.ogg', 50, TRUE)
 			if(machine_stat & BROKEN)
-				to_chat(user, "<span class='warning'>The broken remains of [src] fall on the ground.</span>")
+				to_chat(user, span_warning("The broken remains of [src] fall on the ground."))
 				new /obj/item/stack/sheet/iron(loc, 5)
 				new /obj/item/shard(loc)
 				new /obj/item/shard(loc)
 			else
-				to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]secure [name].</span>")
+				to_chat(user, span_notice("You [anchored ? "un" : ""]secure [name]."))
 				new /obj/item/wallframe/newscaster(loc)
 			qdel(src)
 	else if(I.tool_behaviour == TOOL_WELDER && !user.combat_mode)
 		if(machine_stat & BROKEN)
 			if(!I.tool_start_check(user, amount=0))
 				return
-			user.visible_message("<span class='notice'>[user] is repairing [src].</span>", \
-							"<span class='notice'>You begin repairing [src]...</span>", \
-							"<span class='hear'>You hear welding.</span>")
+			user.visible_message(span_notice("[user] is repairing [src]."), \
+							span_notice("You begin repairing [src]..."), \
+							span_hear("You hear welding."))
 			if(I.use_tool(src, user, 40, volume=50))
 				if(!(machine_stat & BROKEN))
 					return
-				to_chat(user, "<span class='notice'>You repair [src].</span>")
-				obj_integrity = max_integrity
+				to_chat(user, span_notice("You repair [src]."))
+				atom_integrity = max_integrity
 				set_machine_stat(machine_stat & ~BROKEN)
 				update_appearance()
 		else
-			to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
+			to_chat(user, span_notice("[src] does not need repairs."))
 	else
 		return ..()
 
@@ -796,7 +785,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		new /obj/item/shard(loc)
 	qdel(src)
 
-/obj/machinery/newscaster/obj_break(damage_flag)
+/obj/machinery/newscaster/atom_break(damage_flag)
 	. = ..()
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
@@ -804,7 +793,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 /obj/machinery/newscaster/attack_paw(mob/living/user, list/modifiers)
 	if(!user.combat_mode)
-		to_chat(user, "<span class='warning'>The newscaster controls are far too complicated for your tiny brain!</span>")
+		to_chat(user, span_warning("The newscaster controls are far too complicated for your tiny brain!"))
 	else
 		take_damage(5, BRUTE, MELEE)
 
@@ -827,9 +816,9 @@ GLOBAL_LIST_EMPTY(allCasters)
 			else
 				targetcam = R.aicamera
 		else
-			to_chat(user, "<span class='warning'>You cannot interface with silicon photo uploading!</span>")
+			to_chat(user, span_warning("You cannot interface with silicon photo uploading!"))
 		if(!targetcam.stored.len)
-			to_chat(usr, "<span class='boldannounce'>No images saved.</span>")
+			to_chat(usr, span_boldannounce("No images saved."))
 			return
 		var/datum/picture/selection = targetcam.selectpicture(user)
 		if(selection)
@@ -907,13 +896,13 @@ GLOBAL_LIST_EMPTY(allCasters)
 	var/creationTime
 
 /obj/item/newspaper/suicide_act(mob/user)
-	user.visible_message("<span class='suicide'>[user] is focusing intently on [src]! It looks like [user.p_theyre()] trying to commit sudoku... until [user.p_their()] eyes light up with realization!</span>")
+	user.visible_message(span_suicide("[user] is focusing intently on [src]! It looks like [user.p_theyre()] trying to commit sudoku... until [user.p_their()] eyes light up with realization!"))
 	user.say(";JOURNALISM IS MY CALLING! EVERYBODY APPRECIATES UNBIASED REPORTI-GLORF", forced="newspaper suicide")
 	var/mob/living/carbon/human/H = user
 	var/obj/W = new /obj/item/reagent_containers/food/drinks/bottle/whiskey(H.loc)
 	playsound(H.loc, 'sound/items/drink.ogg', rand(10,50), TRUE)
 	W.reagents.trans_to(H, W.reagents.total_volume, transfered_by = user)
-	user.visible_message("<span class='suicide'>[user] downs the contents of [W.name] in one gulp! Shoulda stuck to sudoku!</span>")
+	user.visible_message(span_suicide("[user] downs the contents of [W.name] in one gulp! Shoulda stuck to sudoku!"))
 
 	return(TOXLOSS)
 
@@ -997,7 +986,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else
-		to_chat(user, "<span class='warning'>The paper is full of unintelligible symbols!</span>")
+		to_chat(user, span_warning("The paper is full of unintelligible symbols!"))
 
 /obj/item/newspaper/proc/notContent(list/L)
 	if(!L.len)
@@ -1047,12 +1036,12 @@ GLOBAL_LIST_EMPTY(allCasters)
 
 	if(istype(W, /obj/item/pen))
 		if(!user.is_literate())
-			to_chat(user, "<span class='notice'>You scribble illegibly on [src]!</span>")
+			to_chat(user, span_notice("You scribble illegibly on [src]!"))
 			return
 		if(scribble_page == curr_page)
-			to_chat(user, "<span class='warning'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</span>")
+			to_chat(user, span_warning("There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?"))
 		else
-			var/s = stripped_input(user, "Write something", "Newspaper")
+			var/s = tgui_input_text(user, "Write something", "Newspaper")
 			if (!s)
 				return
 			if(!user.canUseTopic(src, BE_CLOSE))

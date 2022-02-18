@@ -58,7 +58,7 @@
 		while(query_search_admin_logs.NextRow())
 			var/datetime = query_search_admin_logs.item[1]
 			var/round_id = query_search_admin_logs.item[2]
-			var/admin_key  = query_search_admin_logs.item[3]
+			var/admin_key = query_search_admin_logs.item[3]
 			operation = query_search_admin_logs.item[4]
 			target = query_search_admin_logs.item[5]
 			var/log = query_search_admin_logs.item[6]
@@ -145,7 +145,7 @@
 		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>", confidential = TRUE)
 		return
 	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/namespaced/common)
-	permissions_assets.send(src)
+	permissions_assets.send(usr.client)
 	var/admin_key = href_list["key"]
 	var/admin_ckey = ckey(admin_key)
 	var/datum/admins/D = GLOB.admin_datums[admin_ckey]
@@ -169,7 +169,7 @@
 	if(check_rights(R_DBRANKS, FALSE))
 		if(!skip)
 			if(!SSdbcore.Connect())
-				to_chat(usr, "<span class='danger'>Unable to connect to database, changes are temporary only.</span>", confidential = TRUE)
+				to_chat(usr, span_danger("Unable to connect to database, changes are temporary only."), confidential = TRUE)
 				use_db = FALSE
 			else
 				use_db = tgui_alert(usr,"Permanent changes are saved to the database for future rounds, temporary changes will affect only the current round", "Permanent or Temporary?", list("Permanent", "Temporary", "Cancel"))
@@ -227,7 +227,7 @@
 	if(!.)
 		return FALSE
 	if(!admin_ckey && (. in GLOB.admin_datums+GLOB.deadmins))
-		to_chat(usr, "<span class='danger'>[admin_key] is already an admin.</span>", confidential = TRUE)
+		to_chat(usr, span_danger("[admin_key] is already an admin."), confidential = TRUE)
 		return FALSE
 	if(use_db)
 		//if an admin exists without a datum they won't be caught by the above
@@ -240,7 +240,7 @@
 			return FALSE
 		if(query_admin_in_db.NextRow())
 			qdel(query_admin_in_db)
-			to_chat(usr, "<span class='danger'>[admin_key] already listed in admin database. Check the Management tab if they don't appear in the list of admins.</span>", confidential = TRUE)
+			to_chat(usr, span_danger("[admin_key] already listed in admin database. Check the Management tab if they don't appear in the list of admins."), confidential = TRUE)
 			return FALSE
 		qdel(query_admin_in_db)
 		var/datum/db_query/query_add_admin = SSdbcore.NewQuery(
@@ -304,7 +304,10 @@
 	D.deactivate() //after logs so the deadmined admin can see the message.
 
 /datum/admins/proc/auto_deadmin()
-	to_chat(owner, "<span class='interface'>You are now a normal player.</span>", confidential = TRUE)
+	if (owner.prefs.read_preference(/datum/preference/toggle/bypass_deadmin_in_centcom) && is_centcom_level(owner.mob.z))
+		return FALSE
+
+	to_chat(owner, span_interface("You are now a normal player."), confidential = TRUE)
 	var/old_owner = owner
 	deactivate()
 	message_admins("[old_owner] deadmined via auto-deadmin config.")
@@ -312,6 +315,8 @@
 	return TRUE
 
 /datum/admins/proc/change_admin_rank(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
+	if(!check_rights(R_PERMISSIONS))
+		return
 	var/datum/admin_rank/R
 	var/list/rank_names = list()
 	if(!use_db || (use_db && !legacy_only))
@@ -506,7 +511,7 @@
 		return
 	if(query_admins_with_rank.NextRow())
 		qdel(query_admins_with_rank)
-		to_chat(usr, "<span class='danger'>Error: Rank deletion attempted while rank still used; Tell a coder, this shouldn't happen.</span>", confidential = TRUE)
+		to_chat(usr, span_danger("Error: Rank deletion attempted while rank still used; Tell a coder, this shouldn't happen."), confidential = TRUE)
 		return
 	qdel(query_admins_with_rank)
 	if(tgui_alert(usr,"Are you sure you want to remove [admin_rank]?","Confirm Removal",list("Do it","Cancel")) == "Do it")
@@ -543,4 +548,4 @@
 		qdel(query_sync_lastadminrank)
 		return
 	qdel(query_sync_lastadminrank)
-	to_chat(usr, "<span class='admin'>Sync of [admin_key] successful.</span>", confidential = TRUE)
+	to_chat(usr, span_admin("Sync of [admin_key] successful."), confidential = TRUE)

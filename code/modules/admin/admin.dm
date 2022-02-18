@@ -1,22 +1,21 @@
-
 ////////////////////////////////
 /proc/message_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
 /proc/relay_msg_admins(msg)
-	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message linkify\">[msg]</span></span>"
+	msg = "<span class=\"admin\"><span class=\"prefix\">RELAY:</span> <span class=\"message\">[msg]</span></span>"
 	to_chat(GLOB.admins,
 		type = MESSAGE_TYPE_ADMINLOG,
 		html = msg,
 		confidential = TRUE)
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
+<<<<<<< HEAD
 /datum/admins/proc/show_player_panel(mob/M in GLOB.mob_list)
 	set category = "Admin.Game"
 	set name = "Show Player Panel"
@@ -407,6 +406,8 @@
 	onclose(usr, "admincaster_main")
 
 
+=======
+>>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 /datum/admins/proc/Game()
 	if(!check_rights(0))
 		return
@@ -436,6 +437,7 @@
 	usr << browse(dat, "window=admin2;size=240x280")
 	return
 
+<<<<<<< HEAD
 /////////////////////////////////////////////////////////////////////////////////////////////////admins2.dm merge
 //i.e. buttons/verbs
 
@@ -669,6 +671,8 @@
 		tgui_alert(usr,"[M.name] is not prisoned.")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Unprison") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+=======
+>>>>>>> e2bab691172dd668eba065b45d0dcb4080d36800
 ////////////////////////////////////////////////////////////////////////////////////////////////ADMIN HELPER PROCS
 
 /datum/admins/proc/spawn_atom(object as text)
@@ -745,36 +749,6 @@
 	log_admin("[key_name(usr)] spawned cargo pack [chosen] at [AREACOORD(usr)]")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Spawn Cargo") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/show_traitor_panel(mob/target_mob in GLOB.mob_list)
-	set category = "Admin.Game"
-	set desc = "Edit mobs's memory and role"
-	set name = "Show Traitor Panel"
-	var/datum/mind/target_mind = target_mob.mind
-	if(!target_mind)
-		to_chat(usr, "This mob has no mind!", confidential = TRUE)
-		return
-	if(!istype(target_mob) && !istype(target_mind))
-		to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
-		return
-	target_mind.traitor_panel()
-	SSblackbox.record_feedback("tally", "admin_verb", 1, "Traitor Panel") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/show_skill_panel(target)
-	set category = "Admin.Game"
-	set desc = "Edit mobs's experience and skill levels"
-	set name = "Show Skill Panel"
-	var/datum/mind/target_mind
-	if(ismob(target))
-		var/mob/target_mob = target
-		target_mind = target_mob.mind
-	else if (istype(target, /datum/mind))
-		target_mind = target
-	else
-		to_chat(usr, "This can only be used on instances of type /mob and /mind", confidential = TRUE)
-		return
-	var/datum/skill_panel/SP  = new(usr, target_mind)
-	SP.ui_interact(usr)
-
 /datum/admins/proc/toggletintedweldhelmets()
 	set category = "Debug"
 	set desc="Reduces view range when wearing welding helmets"
@@ -788,80 +762,35 @@
 	message_admins("[key_name_admin(usr)] toggled tinted_weldhelh.")
 	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Tinted Welding Helmets", "[GLOB.tinted_weldhelh ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggleguests()
-	set category = "Server"
-	set desc="Guests can't enter"
-	set name="Toggle guests"
-	var/new_guest_ban = !CONFIG_GET(flag/guest_ban)
-	CONFIG_SET(flag/guest_ban, new_guest_ban)
-	if (new_guest_ban)
-		to_chat(world, "<B>Guests may no longer enter the game.</B>", confidential = TRUE)
-	else
-		to_chat(world, "<B>Guests may now enter the game.</B>", confidential = TRUE)
-	log_admin("[key_name(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.")
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] toggled guests game entering [!new_guest_ban ? "" : "dis"]allowed.</span>")
-	SSblackbox.record_feedback("nested tally", "admin_toggle", 1, list("Toggle Guests", "[!new_guest_ban ? "Enabled" : "Disabled"]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
 	for(var/i in GLOB.silicon_mobs)
 		var/mob/living/silicon/S = i
 		ai_number++
+
+		var/message = ""
+
 		if(isAI(S))
-			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>", confidential = TRUE)
+			message += "<b>AI [key_name(S, usr)]'s laws:</b>"
 		else if(iscyborg(S))
 			var/mob/living/silicon/robot/R = S
-			to_chat(usr, "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [key_name(R.connected_ai)])":"(Independent)"]: laws:</b>", confidential = TRUE)
+			message += "<b>CYBORG [key_name(S, usr)] [R.connected_ai?"(Slaved to: [key_name(R.connected_ai)])":"(Independent)"]: laws:</b>"
 		else if (ispAI(S))
-			to_chat(usr, "<b>pAI [key_name(S, usr)]'s laws:</b>", confidential = TRUE)
+			message += "<b>pAI [key_name(S, usr)]'s laws:</b>"
 		else
-			to_chat(usr, "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>", confidential = TRUE)
+			message += "<b>SOMETHING SILICON [key_name(S, usr)]'s laws:</b>"
+
+		message += "<br>"
 
 		if (S.laws == null)
-			to_chat(usr, "[key_name(S, usr)]'s laws are null?? Contact a coder.", confidential = TRUE)
+			message += "[key_name(S, usr)]'s laws are null?? Contact a coder."
 		else
-			S.laws.show_laws(usr)
+			message += jointext(S.laws.get_law_list(include_zeroth = TRUE), "<br>")
+
+		to_chat(usr, message, confidential = TRUE)
+
 	if(!ai_number)
 		to_chat(usr, "<b>No AIs located</b>" , confidential = TRUE)
-
-
-/datum/admins/proc/manage_free_slots()
-	if(!check_rights())
-		return
-	var/datum/browser/browser = new(usr, "jobmanagement", "Manage Free Slots", 520)
-	var/list/dat = list()
-	var/count = 0
-
-	if(!SSjob.initialized)
-		tgui_alert(usr, "You cannot manage jobs before the job subsystem is initialized!")
-		return
-
-	dat += "<table>"
-
-	for(var/j in SSjob.occupations)
-		var/datum/job/job = j
-		count++
-		var/J_title = html_encode(job.title)
-		var/J_opPos = html_encode(job.total_positions - (job.total_positions - job.current_positions))
-		var/J_totPos = html_encode(job.total_positions)
-		dat += "<tr><td>[J_title]:</td> <td>[J_opPos]/[job.total_positions < 0 ? " (unlimited)" : J_totPos]"
-
-		dat += "</td>"
-		dat += "<td>"
-		if(job.total_positions >= 0)
-			dat += "<A href='?src=[REF(src)];[HrefToken()];customjobslot=[job.title]'>Custom</A> | "
-			dat += "<A href='?src=[REF(src)];[HrefToken()];addjobslot=[job.title]'>Add 1</A> | "
-			if(job.total_positions > job.current_positions)
-				dat += "<A href='?src=[REF(src)];[HrefToken()];removejobslot=[job.title]'>Remove</A> | "
-			else
-				dat += "Remove | "
-			dat += "<A href='?src=[REF(src)];[HrefToken()];unlimitjobslot=[job.title]'>Unlimit</A></td>"
-		else
-			dat += "<A href='?src=[REF(src)];[HrefToken()];limitjobslot=[job.title]'>Limit</A></td>"
-
-	browser.height = min(100 + count * 20, 650)
-	browser.set_content(dat.Join())
-	browser.open()
 
 /datum/admins/proc/dynamic_mode_options(mob/user)
 	var/dat = {"
@@ -890,16 +819,6 @@
 	set category = "Debug"
 	set name = "Create or modify area"
 	create_area(usr)
-
-//
-//
-//ALL DONE
-//*********************************************************************************************************
-//TO-DO:
-//
-//
-
-//RIP ferry snowflakes
 
 //Kicks all the clients currently in the lobby. The second parameter (kick_only_afk) determins if an is_afk() check is ran, or if all clients are kicked
 //defaults to kicking everyone (afk + non afk clients in the lobby)
@@ -947,11 +866,11 @@
 			if(tomob.mind == ghost.mind)
 				ghost.mind = null
 
-	message_admins("<span class='adminnotice'>[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name].</span>")
+	message_admins(span_adminnotice("[key_name_admin(usr)] has put [frommob.key] in control of [tomob.name]."))
 	log_admin("[key_name(usr)] stuffed [frommob.key] into [tomob.name].")
 	SSblackbox.record_feedback("tally", "admin_verb", 1, "Ghost Drag Control")
 
-	tomob.ckey = frommob.ckey
+	tomob.key = frommob.key
 	tomob.client?.init_verbs()
 	qdel(frommob)
 

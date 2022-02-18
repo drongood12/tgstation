@@ -20,7 +20,7 @@
 	if (!.)
 		return
 	if(!computer?.get_modular_computer_part(MC_SIGNALER)) //Giving a clue to users why the program is spitting out zeros.
-		to_chat(user, "<span class='warning'>\The [computer] flashes an error: \"hardware\\signal_hardware\\startup.bin -- file not found\".</span>")
+		to_chat(user, span_warning("\The [computer] flashes an error: \"hardware\\signal_hardware\\startup.bin -- file not found\"."))
 
 
 /datum/computer_file/program/signaler/ui_data(mob/user)
@@ -46,9 +46,8 @@
 			INVOKE_ASYNC(src, .proc/signal)
 			. = TRUE
 		if("freq")
-			signal_frequency = unformat_frequency(params["freq"])
-			signal_frequency = sanitize_frequency(signal_frequency, TRUE)
-			set_frequency(signal_frequency)
+			var/new_signal_frequency = sanitize_frequency(unformat_frequency(params["freq"]), TRUE)
+			set_frequency(new_signal_frequency)
 			. = TRUE
 		if("code")
 			signal_code = text2num(params["code"])

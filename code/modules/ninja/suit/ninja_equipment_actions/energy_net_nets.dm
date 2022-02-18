@@ -18,6 +18,7 @@
 	mouse_opacity = MOUSE_OPACITY_ICON//So you can hit it with stuff.
 	anchored = TRUE//Can't drag/grab the net.
 	layer = ABOVE_ALL_MOB_LAYER
+	plane = ABOVE_GAME_PLANE
 	max_integrity = 60 //How much health it has.
 	can_buckle = 1
 	buckle_lying = 0
@@ -31,7 +32,7 @@
 
 /obj/structure/energy_net/Destroy()
 	if(!QDELETED(affecting))
-		affecting.visible_message("<span class='notice'>[affecting.name] is recovered from the energy net!</span>", "<span class='notice'>You are recovered from the energy net!</span>", "<span class='hear'>You hear a grunt.</span>")
+		affecting.visible_message(span_notice("[affecting.name] is recovered from the energy net!"), span_notice("You are recovered from the energy net!"), span_hear("You hear a grunt."))
 	affecting = null
 	return ..()
 

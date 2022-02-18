@@ -10,7 +10,7 @@
 	name = "space electrolyzer"
 	desc = "Thanks to the fast and dynamic response of our electrolyzers, on-site hydrogen production is guaranteed. Warranty void if used by clowns"
 	max_integrity = 250
-	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, RAD = 100, FIRE = 80, ACID = 10)
+	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 100, FIRE = 80, ACID = 10)
 	circuit = /obj/item/circuitboard/machine/electrolyzer
 	/// We don't use area power, we always use the cell
 	use_power = NO_POWER_USE
@@ -28,7 +28,7 @@
 /obj/machinery/electrolyzer/get_cell()
 	return cell
 
-/obj/machinery/electrolyzer/Initialize()
+/obj/machinery/electrolyzer/Initialize(mapload)
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
@@ -117,32 +117,35 @@
 
 	efficiency = (cap + 1) * 0.5 //used in the amount of charge in power cell uses
 
+/obj/machinery/electrolyzer/screwdriver_act(mob/living/user, obj/item/tool)
+	tool.play_tool_sound(src, 50)
+	panel_open = !panel_open
+	user.visible_message(span_notice("\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src]."), span_notice("You [panel_open ? "open" : "close"] the hatch on \the [src]."))
+	update_appearance()
+	return TRUE
+
+/obj/machinery/electrolyzer/crowbar_act(mob/living/user, obj/item/tool)
+	return default_deconstruction_crowbar(tool)
+
 /obj/machinery/electrolyzer/attackby(obj/item/I, mob/user, params)
 	add_fingerprint(user)
 	if(default_unfasten_wrench(user, I))
 		return
 	if(istype(I, /obj/item/stock_parts/cell))
 		if(!panel_open)
-			to_chat(user, "<span class='warning'>The hatch must be open to insert a power cell!</span>")
+			to_chat(user, span_warning("The hatch must be open to insert a power cell!"))
 			return
 		if(cell)
-			to_chat(user, "<span class='warning'>There is already a power cell inside!</span>")
+			to_chat(user, span_warning("There is already a power cell inside!"))
 			return
 		if(!user.transferItemToLoc(I, src))
 			return
 		cell = I
 		I.add_fingerprint(usr)
 
-		user.visible_message("<span class='notice'>\The [user] inserts a power cell into \the [src].</span>", "<span class='notice'>You insert the power cell into \the [src].</span>")
+		user.visible_message(span_notice("\The [user] inserts a power cell into \the [src]."), span_notice("You insert the power cell into \the [src]."))
 		SStgui.update_uis(src)
 
-		return
-	if(I.tool_behaviour == TOOL_SCREWDRIVER)
-		panel_open = !panel_open
-		user.visible_message("<span class='notice'>\The [user] [panel_open ? "opens" : "closes"] the hatch on \the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on \the [src].</span>")
-		update_appearance()
-		return
-	if(default_deconstruction_crowbar(I))
 		return
 	return ..()
 
@@ -172,7 +175,7 @@
 		if("power")
 			on = !on
 			mode = ELECTROLYZER_MODE_STANDBY
-			usr.visible_message("<span class='notice'>[usr] switches [on ? "on" : "off"] \the [src].</span>", "<span class='notice'>You switch [on ? "on" : "off"] \the [src].</span>")
+			usr.visible_message(span_notice("[usr] switches [on ? "on" : "off"] \the [src]."), span_notice("You switch [on ? "on" : "off"] \the [src]."))
 			update_appearance()
 			if (on)
 				START_PROCESSING(SSmachines, src)

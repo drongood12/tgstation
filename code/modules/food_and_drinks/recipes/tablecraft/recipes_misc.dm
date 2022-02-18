@@ -68,6 +68,16 @@
 	result = /obj/item/food/cheesyfries
 	subcategory = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/poutine
+	name = "Poutine"
+	reqs = list(
+		/obj/item/food/fries = 1,
+		/obj/item/food/cheese = 1,
+		/datum/reagent/consumable/gravy = 3
+	)
+	result = /obj/item/food/poutine
+	subcategory = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/beans
 	name = "Beans"
 	time = 40
@@ -182,4 +192,48 @@
 		/datum/reagent/toxin/mutagen = 5
 	)
 	result = /obj/item/food/cheese/royal
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/ant_candy
+	name = "Ant Candy"
+	reqs = list(/obj/item/stack/rods = 1,
+		/datum/reagent/consumable/sugar = 5,
+		/datum/reagent/water = 5,
+		/datum/reagent/ants = 10
+	)
+	result = /obj/item/food/ant_candy
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/pesto
+	name = "Pesto"
+	reqs = list(
+		/obj/item/food/firm_cheese_slice = 1,
+		/datum/reagent/consumable/salt = 5,
+		/obj/item/food/grown/herbs = 2,
+		/obj/item/food/grown/garlic = 1,
+		/datum/reagent/consumable/quality_oil = 5,
+		/obj/item/food/canned/pine_nuts = 1
+	)
+	result = /obj/item/food/pesto
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/tomato_sauce
+	name = "Tomato sauce"
+	reqs = list(
+		/obj/item/food/canned/tomatoes = 1,
+		/datum/reagent/consumable/salt = 2,
+		/obj/item/food/grown/herbs = 1,
+		/datum/reagent/consumable/quality_oil = 5
+	)
+	result = /obj/item/food/tomato_sauce
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/bechamel_sauce
+	name = "Bechamel sauce"
+	reqs = list(
+		/datum/reagent/consumable/milk = 10,
+		/datum/reagent/consumable/flour = 5,
+		/obj/item/food/butter = 1
+	)
+	result = /obj/item/food/bechamel_sauce
 	subcategory = CAT_MISCFOOD

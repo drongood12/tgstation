@@ -337,7 +337,7 @@
 	dir = 1
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /obj/machinery/light/directional/east,
@@ -744,10 +744,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Beta Station Main Corridor APC";
-	pixel_y = 23;
+/obj/machinery/power/apc/auto_name/directional/north{
 	start_charge = 0
 	},
 /turf/open/floor/iron,
@@ -972,7 +969,7 @@
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/comm)
 "cN" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/external/ruin,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 1
 	},
@@ -1145,7 +1142,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light/small/directional/west,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -23
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -1223,7 +1220,7 @@
 "du" = (
 /obj/machinery/light/small/directional/east,
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -1368,12 +1365,6 @@
 "dS" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Charlie Security APC";
-	pixel_x = -25;
-	start_charge = 0
-	},
 /obj/effect/turf_decal/tile/red{
 	dir = 1
 	},
@@ -1384,6 +1375,9 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/west{
+	start_charge = 0
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/sec)
 "dT" = (
@@ -1432,14 +1426,11 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Charlie Station Bridge APC";
-	pixel_y = 23;
-	start_charge = 0
-	},
 /obj/effect/decal/cleanable/cobweb,
 /obj/machinery/light_switch/directional/west,
+/obj/machinery/power/apc/auto_name/directional/north{
+	start_charge = 0
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/comm)
 "dX" = (
@@ -1470,10 +1461,7 @@
 "ec" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Delta Station RnD APC";
-	pixel_y = 23;
+/obj/machinery/power/apc/auto_name/directional/north{
 	start_charge = 0
 	},
 /turf/open/floor/iron/white,
@@ -1673,7 +1661,7 @@
 "eC" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/open/floor/iron/white,
@@ -1921,7 +1909,6 @@
 	},
 /obj/structure/closet/crate/bin,
 /obj/machinery/airalarm/all_access{
-	dir = 1;
 	pixel_y = -22
 	},
 /turf/open/floor/iron,
@@ -2210,23 +2197,14 @@
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/mining)
-"gd" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating/airless{
-	icon_state = "platingdmg1"
-	},
-/area/ruin/space/has_grav/ancientstation/betastorage)
 "ge" = (
 /obj/structure/alien/weeds,
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Delta Station Artifical Program Core APC";
-	pixel_x = 24;
-	start_charge = 0
-	},
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/blood/old,
+/obj/machinery/power/apc/auto_name/directional/east{
+	start_charge = 0
+	},
 /turf/open/floor/iron/dark,
 /area/ruin/space/has_grav/ancientstation/deltaai)
 "gf" = (
@@ -2375,6 +2353,7 @@
 "gv" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
+	dir = 1;
 	pixel_y = 23
 	},
 /obj/effect/decal/cleanable/food/egg_smudge,
@@ -2445,15 +2424,13 @@
 	dir = 4
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	name = "Charlie Station Garden APC ";
-	pixel_y = -23;
-	start_charge = 0
-	},
 /obj/item/reagent_containers/glass/bottle/nutrient/ez,
 /obj/item/reagent_containers/glass/bottle/nutrient/l4z,
 /obj/item/reagent_containers/glass/bottle/nutrient/rh,
 /obj/structure/closet/crate/hydroponics,
+/obj/machinery/power/apc/auto_name/directional/south{
+	start_charge = 0
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
 "gG" = (
@@ -2631,7 +2608,7 @@
 /area/ruin/space/has_grav/ancientstation/rnd)
 "hj" = (
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -2663,7 +2640,7 @@
 "hn" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -23
 	},
 /obj/machinery/space_heater,
@@ -2859,7 +2836,7 @@
 /area/ruin/space/has_grav/ancientstation/betacorridor)
 "hK" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/rad_collector,
+/obj/machinery/power/energy_accumulator/tesla_coil,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "hL" = (
@@ -3275,12 +3252,6 @@
 /obj/structure/rack,
 /obj/item/stack/cable_coil,
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Charlie Engineering APC";
-	pixel_x = 24;
-	start_charge = 0
-	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -3289,6 +3260,9 @@
 	dir = 8
 	},
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/east{
+	start_charge = 0
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/engi)
 "iy" = (
@@ -3325,7 +3299,7 @@
 	dir = 8
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -23
 	},
 /turf/open/floor/iron,
@@ -3781,7 +3755,7 @@
 "jy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -3904,15 +3878,13 @@
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "jO" = (
-/obj/machinery/light/small/broken{
-	dir = 1
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4{
 	dir = 4
 	},
+/obj/machinery/light/small/broken/directional/north,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "jP" = (
@@ -3925,18 +3897,15 @@
 "jQ" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/closet/crate,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Charlie Main Corridor APC";
-	pixel_x = 24;
-	start_charge = 0
-	},
 /obj/structure/cable,
 /obj/item/stack/sheet/glass{
 	amount = 50
 	},
 /obj/item/stack/sheet/glass{
 	amount = 25
+	},
+/obj/machinery/power/apc/auto_name/directional/east{
+	start_charge = 0
 	},
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation)
@@ -4000,12 +3969,6 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/hydroponics)
 "jY" = (
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Beta Atmospherics APC";
-	pixel_x = 24;
-	start_charge = 0
-	},
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
 /obj/effect/turf_decal/tile/yellow{
@@ -4013,6 +3976,9 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/machinery/atmospherics/pipe/layer_manifold,
+/obj/machinery/power/apc/auto_name/directional/east{
+	start_charge = 0
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "jZ" = (
@@ -4050,8 +4016,7 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/sec)
 "kd" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/suit/space/hardsuit/ancient,
+/obj/machinery/mod_installer,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "ke" = (
@@ -4072,13 +4037,10 @@
 /area/ruin/space/has_grav/ancientstation/proto)
 "kg" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Delta Prototype Lab APC";
-	pixel_y = 23;
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/north{
 	start_charge = 0
 	},
-/obj/structure/cable,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "kh" = (
@@ -4095,6 +4057,7 @@
 "kj" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
+	dir = 1;
 	pixel_y = 23
 	},
 /turf/open/floor/iron/white,
@@ -4164,7 +4127,7 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/oldsec,
+/obj/effect/mob_spawn/ghost_role/human/oldsec,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation)
@@ -4231,7 +4194,7 @@
 /area/ruin/space/has_grav/ancientstation/atmo)
 "kC" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/atmospherics/components/unary/tank/air{
+/obj/machinery/atmospherics/components/tank/air{
 	dir = 1
 	},
 /turf/open/floor/plating,
@@ -4266,7 +4229,7 @@
 	dir = 8
 	},
 /obj/structure/cable,
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/ruin{
 	name = "Engineering External Access"
 	},
 /turf/open/floor/plating,
@@ -4330,7 +4293,7 @@
 	dir = 6
 	},
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/oldsci,
+/obj/effect/mob_spawn/ghost_role/human/oldsci,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation)
@@ -4505,7 +4468,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/oldeng,
+/obj/effect/mob_spawn/ghost_role/human/oldeng,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation)
 "lo" = (
@@ -4529,7 +4492,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/effect/mob_spawn/human/oldsci,
+/obj/effect/mob_spawn/ghost_role/human/oldsci,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation)
 "ls" = (
@@ -4548,14 +4511,11 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 4;
-	name = "Delta Station Corridor APC";
-	pixel_x = 24;
-	start_charge = 0
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/power/apc/auto_name/directional/east{
+	start_charge = 0
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "lw" = (
@@ -4564,14 +4524,11 @@
 /area/ruin/space/has_grav/ancientstation/deltacorridor)
 "lx" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Charlie Station Kitchen APC";
-	pixel_y = 23;
-	start_charge = 0
-	},
 /obj/structure/cable,
 /obj/machinery/light/small/directional/north,
+/obj/machinery/power/apc/auto_name/directional/north{
+	start_charge = 0
+	},
 /turf/open/floor/iron/cafeteria,
 /area/ruin/space/has_grav/ancientstation/kitchen)
 "ly" = (
@@ -4655,7 +4612,7 @@
 	dir = 4
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/open/floor/iron,
@@ -4663,7 +4620,7 @@
 "lL" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /obj/effect/turf_decal/tile/yellow,
@@ -4719,7 +4676,7 @@
 /obj/effect/decal/cleanable/cobweb,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -23
 	},
 /obj/machinery/light_switch/directional/north,
@@ -4842,7 +4799,6 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation)
 "mm" = (
-/obj/structure/table/reinforced,
 /obj/machinery/power/supermatter_crystal/shard,
 /obj/structure/closet/crate/engineering{
 	name = "supermatter shard crate"
@@ -4873,7 +4829,7 @@
 	},
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -23
 	},
 /turf/open/floor/iron,
@@ -4928,18 +4884,15 @@
 	info = "<b>*Prototype Sleeper*</b><br><br>We have deliverted the lastest in medical technology to the medical bay for your use."
 	},
 /obj/structure/cable,
-/obj/machinery/power/apc{
-	dir = 1;
-	name = "Beta Station Medbay APC";
-	pixel_y = 23;
-	start_charge = 0
-	},
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
+	},
+/obj/machinery/power/apc/auto_name/directional/north{
+	start_charge = 0
 	},
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/ancientstation/medbay)
@@ -5098,17 +5051,15 @@
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/sec)
 "mQ" = (
-/obj/machinery/power/apc{
-	name = "Beta Station Mining Equipment APC ";
-	pixel_y = -23;
-	start_charge = 0
-	},
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/south{
+	start_charge = 0
+	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/mining)
 "mR" = (
@@ -5199,7 +5150,6 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 1;
 	pixel_y = -22
 	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
@@ -5353,7 +5303,7 @@
 	dir = 8
 	},
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -23
 	},
 /turf/open/floor/iron/airless,
@@ -5463,9 +5413,6 @@
 	},
 /obj/item/retractor,
 /obj/item/surgical_drapes,
-/obj/machinery/light/small/broken{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
@@ -5473,6 +5420,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue,
+/obj/machinery/light/small/broken/directional/west,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/ancientstation/medbay)
 "nD" = (
@@ -5816,9 +5764,6 @@
 	icon_state = "plant-25"
 	},
 /obj/effect/decal/cleanable/cobweb,
-/obj/machinery/light/small/broken{
-	dir = 8
-	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
 	},
@@ -5828,6 +5773,7 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
 	},
+/obj/machinery/light/small/broken/directional/west,
 /turf/open/floor/iron/airless,
 /area/ruin/space/has_grav/ancientstation/medbay)
 "ox" = (
@@ -5866,7 +5812,7 @@
 "oz" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -23
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -5987,13 +5933,10 @@
 	icon_state = "medium"
 	},
 /obj/effect/decal/cleanable/glass,
-/obj/machinery/power/apc{
-	dir = 8;
-	name = "Beta Storage APC";
-	pixel_x = -25;
+/obj/structure/cable,
+/obj/machinery/power/apc/auto_name/directional/west{
 	start_charge = 0
 	},
-/obj/structure/cable,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betastorage)
 "oQ" = (
@@ -6001,11 +5944,9 @@
 /obj/item/shard{
 	icon_state = "small"
 	},
-/obj/machinery/light/broken{
-	dir = 8
-	},
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2,
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
+/obj/machinery/light/broken/directional/west,
 /turf/open/floor/plating/airless,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
 "oR" = (
@@ -6044,7 +5985,7 @@
 	},
 /obj/effect/decal/cleanable/glass,
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/open/floor/plating/airless{
@@ -6053,7 +5994,7 @@
 /area/ruin/space/has_grav/ancientstation/betacorridor)
 "oX" = (
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -23
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -6204,6 +6145,20 @@
 	},
 /turf/open/floor/engine/n2,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"pB" = (
+/obj/machinery/portable_atmospherics/canister/plasma,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light/small/directional/east,
+/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible/layer2{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/atmo)
+"pD" = (
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "pM" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/hidden/layer2{
 	dir = 8
@@ -6281,6 +6236,22 @@
 /obj/structure/cable,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation)
+"rW" = (
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating/airless{
+	icon_state = "platingdmg1"
+	},
+/area/ruin/space/has_grav/ancientstation/betastorage)
+"rX" = (
+/obj/structure/closet,
+/obj/effect/spawner/random/maintenance/three,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
+"rZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/energy_accumulator/grounding_rod,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "sy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -6378,7 +6349,7 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
 	},
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/ruin{
 	name = "Engineering External Access"
 	},
 /turf/open/floor/plating,
@@ -6425,11 +6396,6 @@
 	},
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/engi)
-"xl" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation)
 "xr" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
@@ -6542,10 +6508,6 @@
 "Ax" = (
 /turf/closed/mineral/plasma,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
-"AF" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "AK" = (
 /turf/closed/wall,
 /area/ruin/space/has_grav/ancientstation/medbay)
@@ -6694,11 +6656,6 @@
 "FV" = (
 /turf/closed/mineral/random,
 /area/ruin/space/has_grav/ancientstation/betacorridor)
-"GG" = (
-/obj/structure/closet,
-/obj/effect/spawner/lootdrop/maintenance/three,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "GP" = (
 /obj/machinery/pipedispenser/disposal,
 /obj/effect/turf_decal/stripes/corner{
@@ -6729,6 +6686,11 @@
 /obj/effect/turf_decal/tile/yellow,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/atmo)
+"Ij" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation/deltacorridor)
 "It" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/sink{
@@ -6741,7 +6703,7 @@
 "Iw" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -6806,10 +6768,6 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation)
-"Ky" = (
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating/airless,
-/area/ruin/space/has_grav/ancientstation/betastorage)
 "KF" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -6823,9 +6781,7 @@
 "KG" = (
 /obj/machinery/light/directional/east,
 /obj/structure/table/reinforced,
-/obj/item/paper/fluff/ruins/oldstation/protosing{
-	info = "<b>*Supermatter Crystal Shard*</b><br><br>Modern power generation typically comes in two forms, a Fusion Generator or a Fission Generator. Fusion provides the best space to power \ntratio, and is typically seen on military or high security ships and stations, however Fission reactors require the usage of expensive, and rare, materials in its construction. Fission generators are massive and bulky, and require a large reserve of uranium to power, however they are extremely cheap to operate and oft need little maintenance once \ntoperational.<br><br>The Supermatter aims to alter this, a functional Supermatter is essentially a gas producer that generates far more radiation than Fusion or Fission \ntgenerators can ever hope to produce. "
-	},
+/obj/item/paper/fluff/ruins/oldstation/protosupermatter,
 /turf/open/floor/iron/white,
 /area/ruin/space/has_grav/ancientstation/proto)
 "KO" = (
@@ -6868,7 +6824,7 @@
 "LO" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 4;
+	dir = 8;
 	pixel_x = -24
 	},
 /obj/machinery/light/directional/west,
@@ -7101,8 +7057,12 @@
 /obj/machinery/atmospherics/pipe/smart/manifold4w/supply/hidden/layer4,
 /turf/open/floor/iron,
 /area/ruin/space/has_grav/ancientstation/sec)
+"RR" = (
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating/airless,
+/area/ruin/space/has_grav/ancientstation/betastorage)
 "RX" = (
-/obj/machinery/door/airlock/external,
+/obj/machinery/door/airlock/external/ruin,
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/mining)
@@ -7190,7 +7150,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/airalarm/all_access{
-	dir = 8;
+	dir = 4;
 	pixel_x = 24
 	},
 /turf/open/floor/iron,
@@ -7209,21 +7169,6 @@
 	dir = 4
 	},
 /turf/open/floor/iron,
-/area/ruin/space/has_grav/ancientstation/atmo)
-"Ve" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/spawner/lootdrop/maintenance,
-/turf/open/floor/plating,
-/area/ruin/space/has_grav/ancientstation/deltacorridor)
-"Vm" = (
-/obj/machinery/portable_atmospherics/canister/toxins,
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/dirt,
-/obj/machinery/light/small/directional/east,
-/obj/machinery/atmospherics/pipe/smart/manifold4w/scrubbers/visible/layer2{
-	dir = 4
-	},
-/turf/open/floor/plating,
 /area/ruin/space/has_grav/ancientstation/atmo)
 "Wn" = (
 /obj/effect/decal/cleanable/dirt,
@@ -7367,6 +7312,11 @@
 	icon_state = "platingdmg1"
 	},
 /area/ruin/space/has_grav/ancientstation/betastorage)
+"YZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/spawner/random/maintenance,
+/turf/open/floor/plating,
+/area/ruin/space/has_grav/ancientstation)
 "Ze" = (
 /obj/machinery/portable_atmospherics/canister/nitrogen,
 /turf/open/floor/engine/n2,
@@ -7821,7 +7771,7 @@ kQ
 kQ
 Bs
 Lh
-Vm
+pB
 pv
 Ze
 mH
@@ -7851,7 +7801,7 @@ zJ
 ck
 ch
 ox
-Ky
+RR
 ot
 gu
 gU
@@ -7951,7 +7901,7 @@ ch
 fA
 KO
 fZ
-gd
+rW
 oC
 YA
 On
@@ -9068,7 +9018,7 @@ aa
 aT
 ed
 aY
-xl
+YZ
 aY
 aY
 bx
@@ -10403,7 +10353,7 @@ aa
 aa
 aa
 bD
-Ve
+Ij
 fV
 dh
 bE
@@ -11330,7 +11280,7 @@ dh
 dh
 dh
 fV
-GG
+rX
 bE
 eZ
 eZ
@@ -11342,7 +11292,7 @@ dh
 Yc
 Fl
 bE
-Ve
+Ij
 dh
 dh
 bE
@@ -11378,7 +11328,7 @@ bE
 he
 os
 jf
-AF
+pD
 ZB
 bE
 eZ
@@ -11434,8 +11384,8 @@ bE
 hK
 hK
 dh
-dh
-dh
+rZ
+rZ
 dh
 Zk
 DC
